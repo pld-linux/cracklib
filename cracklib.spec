@@ -1,3 +1,5 @@
+%bcond_with	pp	# disable stack protector (vide dietlibc.spec)
+
 Summary:	Password checking library
 Summary(es):	Biblioteca de chequeo de contraseñas
 Summary(fr):	Bibliothèque de vérification de mots de passe
@@ -182,7 +184,7 @@ sözlükler yaratýlmasý için gerekli yardýmcý programlarý içerir.
 %build
 %{__make} all \
 	CC="%{__cc}" \
-	OPTFLAGS="%{rpmcflags}"
+	OPTFLAGS="%{rpmcflags} %{?with_pp:-fno-stack-protector}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
