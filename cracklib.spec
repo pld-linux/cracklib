@@ -16,6 +16,7 @@ Source0:	ftp://coast.cs.purdue.edu/pub/tools/unix/libs/cracklib/%{name}_%{versio
 Patch0:		%{name}.patch
 Patch1:		%{name}-pld.patch
 Patch2:		%{name}-nss.patch
+Patch3:		%{name}-libdir.patch
 BuildRequires:	words
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -176,6 +177,7 @@ sözlükler yaratýlmasý için gerekli yardýmcý programlarý içerir.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 %build
 %{__make} all \
@@ -187,6 +189,7 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_sbindir},%{_libdir},%{_includedir},%{_datadir}/dict}
 
 %{__make} install \
+	libdir=%{_libdir} \
 	ROOT=$RPM_BUILD_ROOT
 
 install cracklib/packer.h $RPM_BUILD_ROOT%{_includedir}
