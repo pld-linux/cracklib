@@ -87,7 +87,7 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT/usr/{sbin,lib,include}
 make install ROOT=$RPM_BUILD_ROOT
 
-strip $RPM_BUILD_ROOT/usr/lib/lib*.so.*.* $RPM_BUILD_ROOT/usr/sbin/packer
+strip $RPM_BUILD_ROOT%{_libdir}/lib*.so.*.* $RPM_BUILD_ROOT/usr/sbin/packer
 
 gzip -9nf README MANIFEST LICENCE POSTER HISTORY
 
@@ -100,18 +100,18 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc {README,MANIFEST,LICENCE,POSTER}.gz
-%attr(755,root,root) /usr/lib/lib*so.*.*
+%attr(755,root,root) %{_libdir}/lib*so.*.*
 
 %files devel
 %defattr(644,root,root,755)
 %doc HISTORY.gz
-%attr(755,root,root) /usr/lib/lib*so
+%attr(755,root,root) %{_libdir}/lib*so
 /usr/include/*
 
 %files dicts
 %defattr(644,root,root,755)
 %attr(755,root,root) /usr/sbin/*
-/usr/lib/cracklib_dict*
+%{_libdir}/cracklib_dict*
 
 %changelog
 * Wed Apr 28 1999 Artur Frysiak <wiget@pld.org.pl>
