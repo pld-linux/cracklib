@@ -7,13 +7,6 @@ Version:	2.7
 Release:	14
 License:	Artistic
 Group:		Libraries
-Group(de):	Libraries
-Group(es):	Bibliotecas
-Group(fr):	Librairies
-Group(pl):	Biblioteki
-Group(pt_BR):	Bibliotecas
-Group(ru):	âÉÂÌÉÏÔÅËÉ
-Group(uk):	â¦ÂÌ¦ÏÔÅËÉ
 Source0:	ftp://coast.cs.purdue.edu/pub/tools/unix/cracklib/%{name}_%{version}.tgz
 Patch0:		%{name}.patch
 Patch1:		%{name}-pld.patch
@@ -45,13 +38,6 @@ bulunmamaları gibi güvenlikle ilgili özelliklerini kontrol eder.
 Summary:	Header files and documentation for cracklib
 Summary(pl):	Pliki nag³ówkowe i dokumentacja dla cracklib
 Group:		Development/Libraries
-Group(de):	Entwicklung/Libraries
-Group(es):	Desarrollo/Bibliotecas
-Group(fr):	Development/Librairies
-Group(pl):	Programowanie/Biblioteki
-Group(pt_BR):	Desenvolvimento/Bibliotecas
-Group(ru):	òÁÚÒÁÂÏÔËÁ/âÉÂÌÉÏÔÅËÉ
-Group(uk):	òÏÚÒÏÂËÁ/â¦ÂÌ¦ÏÔÅËÉ
 Requires:	%{name} = %{version}
 
 %description devel
@@ -67,8 +53,6 @@ Summary(fr):	Dictionnaires standards (/usr/share/dict/words)
 Summary(pl):	Standardowe s³owniki (/usr/share/dict/words)
 Summary(tr):	Standart sözlükler (/usr/share/dict/words)
 Group:		Applications/System
-Group(de):	Applikationen/System
-Group(pl):	Aplikacje/System
 
 %description dicts
 Includes the cracklib dictionaries for the standard /usr/dict/words,
