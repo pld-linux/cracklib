@@ -1,17 +1,17 @@
-Summary:     Password checking library
-Summary(fr): Bibliothèque de vérification de mots de passe
-Summary(tr): Parola denetim kitaplýðý
-Summary(pl): Biblioteka sprawdzania hase³
-Name:        cracklib
-Version:     2.7
-Release:     4
-Group:       Development/Libraries
-Group(pl):   Programowanie/Biblioteki
-Source:      ftp://coast.cs.purdue.edu/pub/tools/unix/cracklib/%{name}_%{version}.tgz
-Patch:       cracklib-2.7.patch
-URL:         ftp://coast.cs.purdue.edu/pub/tools/unix/cracklib/
-Copyright:   artistic
-Buildroot:   /tmp/%{name}-%{version}-root
+Summary:	Password checking library
+Summary(fr):	Bibliothèque de vérification de mots de passe
+Summary(tr):	Parola denetim kitaplýðý
+Summary(pl):	Biblioteka sprawdzania hase³
+Name:		cracklib
+Version:	2.7
+Release:	4
+Group:		Development/Libraries
+Group(pl):	Programowanie/Biblioteki
+Copyright:	artistic
+Source:		ftp://coast.cs.purdue.edu/pub/tools/unix/cracklib/%{name}_%{version}.tgz
+Patch:		cracklib-2.7.patch
+URL:		ftp://coast.cs.purdue.edu/pub/tools/unix/cracklib/
+Buildroot:	/tmp/%{name}-%{version}-root
 
 %description
 Checks passwords for security related characteristics - length, uniqueness, 
@@ -34,11 +34,11 @@ Sprawdza has³a pod k±tem bezpieczeñstwa - d³ugo¶æ, unikalno¶æ, czy
 wystêpuj± w s³owniu itp.
 
 %package devel
-Summary:     Header files and documentation for cracklib
-Summary(pl): Pliki nag³ówkowe i dokumentacja dla cracklib
-Group:       Development/Libraries
-Group(pl):   Programowanie/Biblioteki
-Requires:    %{name} = %{version}
+Summary:	Header files and documentation for cracklib
+Summary(pl):	Pliki nag³ówkowe i dokumentacja dla cracklib
+Group:		Development/Libraries
+Group(pl):	Programowanie/Biblioteki
+Requires:	%{name} = %{version}
 
 %description devel
 Header files and documentation for cracklib.
@@ -47,13 +47,13 @@ Header files and documentation for cracklib.
 Pliki nag³ówkowe i dokumentacja dla cracklib.
 
 %package dicts
-Summary:     Standard dictionaries (/usr/dict/words)
-Summary(de): Standard-Wörterbücher (/usr/dict/words)
-Summary(fr): Dictionnaires standards (/usr/dict/words)
-Summary(tr): Standart sözlükler
-Summary(pl): Standardowe s³owniki (/usr/dict/words)
-Group:       Utilities/System
-Group(pl):   Narzêdzia/System
+Summary:	Standard dictionaries (/usr/dict/words)
+Summary(de):	Standard-Wörterbücher (/usr/dict/words)
+Summary(fr):	Dictionnaires standards (/usr/dict/words)
+Summary(tr):	Standart sözlükler
+Summary(pl):	Standardowe s³owniki (/usr/dict/words)
+Group:		Utilities/System
+Group(pl):	Narzêdzia/System
 
 %description dicts
 Includes the cracklib dictionaries for the standard /usr/dict/words, as
@@ -98,19 +98,19 @@ rm -rf $RPM_BUILD_ROOT
 %postun -p /sbin/ldconfig
 
 %files
-%defattr(644, root, root, 755)
+%defattr(644,root,root,755)
 %doc {README,MANIFEST,LICENCE,POSTER}.gz
-%attr(755, root, root) /usr/lib/lib*so.*.*
+%attr(755,root,root) /usr/lib/lib*so.*.*
 
 %files devel
-%defattr(644, root, root, 755)
+%defattr(644,root,root,755)
 %doc HISTORY.gz
-%attr(755, root, root) /usr/lib/lib*so
+%attr(755,root,root) /usr/lib/lib*so
 /usr/include/*
 
 %files dicts
-%defattr(644, root, root, 755)
-%attr(755, root, root) /usr/sbin/*
+%defattr(644,root,root,755)
+%attr(755,root,root) /usr/sbin/*
 /usr/lib/cracklib_dict*
 
 %changelog
