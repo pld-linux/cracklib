@@ -8,7 +8,7 @@ Release:     4
 Group:       Development/Libraries
 Group(pl):   Programowanie/Biblioteki
 Source:      ftp://coast.cs.purdue.edu/pub/tools/unix/cracklib/%{name}_%{version}.tgz
-Patch:       cracklib-2.7-redhat.patch
+Patch:       cracklib-2.7.patch
 URL:         ftp://coast.cs.purdue.edu/pub/tools/unix/cracklib/
 Copyright:   artistic
 Buildroot:   /tmp/%{name}-%{version}-root
@@ -89,6 +89,8 @@ make install ROOT=$RPM_BUILD_ROOT
 
 strip $RPM_BUILD_ROOT/usr/lib/lib*.so.*.*
 
+gzip -9nf README MANIFEST LICENCE POSTER HISTORY
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -97,12 +99,12 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644, root, root, 755)
-%doc README MANIFEST LICENCE POSTER
+%doc {README,MANIFEST,LICENCE,POSTER}.gz
 %attr(755, root, root) /usr/lib/lib*so.*.*
 
 %files devel
 %defattr(644, root, root, 755)
-%doc HISTORY
+%doc HISTORY.gz
 %attr(755, root, root) /usr/lib/lib*so
 /usr/include/*
 
