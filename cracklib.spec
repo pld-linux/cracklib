@@ -101,7 +101,7 @@ rm -rf $RPM_BUILD_ROOT
 - added -q %setup parameter,
 - changed Buildroot to /tmp/%%{name}-%%{version}-root,
 - added using %%{name} and %%{version} in Source and %setup,
-- added striping shared libraries,
+- added stripping shared libraries,
 - added devel subpackage,
 - added %attr and %defattr macros in %files (allow build package from
   non-root account).
