@@ -4,13 +4,14 @@ Summary(tr):	Parola denetim kitaplýðý
 Summary(pl):	Biblioteka sprawdzania hase³
 Name:		cracklib
 Version:	2.7
-Release:	7
+Release:	8
 Group:		Libraries
 Group(pl):	Biblioteki
 Copyright:	artistic
 Source:		%{name}_%{version}.tgz
 Patch0:		cracklib.patch
 Patch1:		cracklib-pld.patch
+#BuildPrereq:	words
 URL:		ftp://coast.cs.purdue.edu/pub/tools/unix/cracklib
 Buildroot:	/tmp/%{name}-%{version}-root
 
@@ -34,7 +35,7 @@ bulunmamalarý gibi güvenlikle ilgili özelliklerini kontrol eder.
 Sprawdza has³a pod k±tem bezpieczeñstwa - d³ugo¶æ, unikalno¶æ, czy
 wystêpuj± w s³owniu itp.
 
-%package devel
+%package	devel
 Summary:	Header files and documentation for cracklib
 Summary(pl):	Pliki nag³ówkowe i dokumentacja dla cracklib
 Group:		Development/Libraries
@@ -47,7 +48,7 @@ Header files and documentation for cracklib.
 %description -l pl
 Pliki nag³ówkowe i dokumentacja dla cracklib.
 
-%package dicts
+%package	dicts
 Summary:	Standard dictionaries (/usr/share/dict/words)
 Summary(de):	Standard-Wörterbücher (/usr/share/dict/words)
 Summary(fr):	Dictionnaires standards (/usr/share/dict/words)
@@ -86,25 +87,27 @@ make all
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_sbindir},%{_libdir},%{_includedir},%{_datadir}/dict}
+install -d $RPM_BUILD_ROOT%{_prefix}/{sbin,lib,include,share/dict}
 
-make install \
-	ROOT=$RPM_BUILD_ROOT
+make \
+    ROOT=$RPM_BUILD_ROOT \
+    install
 
 strip	 $RPM_BUILD_ROOT%{_sbindir}/packer
 strip	--strip-unneeded $RPM_BUILD_ROOT%{_libdir}/lib*.so.*.*
 
 gzip -9nf README MANIFEST LICENCE POSTER HISTORY
 
-%post   -p /sbin/ldconfig
-%postun -p /sbin/ldconfig
-
 %clean
 rm -rf $RPM_BUILD_ROOT
+
+%post   -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %files
 %defattr(644,root,root,755)
 %doc {README,MANIFEST,LICENCE,POSTER}.gz
+
 %attr(755,root,root) %{_libdir}/lib*so.*
 
 %files devel
