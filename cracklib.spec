@@ -8,9 +8,10 @@ Release:	7
 Group:		Libraries
 Group(pl):	Biblioteki
 Copyright:	artistic
-Source:		ftp://coast.cs.purdue.edu/pub/tools/unix/cracklib/%{name}_%{version}.tgz
-Patch:		cracklib.patch
-URL:		ftp://coast.cs.purdue.edu/pub/tools/unix/cracklib/
+Source:		%{name}_%{version}.tgz
+Patch0:		cracklib.patch
+Patch1:		cracklib-pld.patch
+URL:		ftp://coast.cs.purdue.edu/pub/tools/unix/cracklib
 Buildroot:	/tmp/%{name}-%{version}-root
 
 %description
@@ -33,7 +34,7 @@ bulunmamalarý gibi güvenlikle ilgili özelliklerini kontrol eder.
 Sprawdza has³a pod k±tem bezpieczeñstwa - d³ugo¶æ, unikalno¶æ, czy
 wystêpuj± w s³owniu itp.
 
-%package devel
+%package	devel
 Summary:	Header files and documentation for cracklib
 Summary(pl):	Pliki nag³ówkowe i dokumentacja dla cracklib
 Group:		Development/Libraries
@@ -46,12 +47,12 @@ Header files and documentation for cracklib.
 %description -l pl
 Pliki nag³ówkowe i dokumentacja dla cracklib.
 
-%package dicts
-Summary:	Standard dictionaries (/usr/dict/words)
-Summary(de):	Standard-Wörterbücher (/usr/dict/words)
-Summary(fr):	Dictionnaires standards (/usr/dict/words)
-Summary(tr):	Standart sözlükler
-Summary(pl):	Standardowe s³owniki (/usr/dict/words)
+%package	dicts
+Summary:	Standard dictionaries (/usr/share/dict/words)
+Summary(de):	Standard-Wörterbücher (/usr/share/dict/words)
+Summary(fr):	Dictionnaires standards (/usr/share/dict/words)
+Summary(tr):	Standart sözlükler (/usr/share/dict/words)
+Summary(pl):	Standardowe s³owniki (/usr/share/dict/words)
 Group:		Utilities/System
 Group(pl):	Narzêdzia/System
 
@@ -60,34 +61,39 @@ Includes the cracklib dictionaries for the standard /usr/dict/words, as
 well as utilities needed to create new dictionaries.
 
 %description -l de dicts
-Enthält die Cracklib-Wörterbücher für die Standard-/usr/dict/Wörter sowie
+Enthält die Cracklib-Wörterbücher für die Standard-/usr/share/dict/Wörter sowie
 Utilities zum Erstellen neuer Wörterbücher"
 
 %description -l fr dicts
-Contient les dictionnaires cracklib pour le /usr/dict/words standard, ainsi
-que les utilitaires nécessaires à la création de nouveaux dictionnaires.
+Contient les dictionnaires cracklib pour le /usr/share/dict/words standard,
+ainsi que les utilitaires nécessaires à la création de nouveaux dictionnaires.
 
 %description -l tr dicts
-/usr/dict/words dosyasý için 'cracklib' kitaplýklarýný ve yeni sözlükler
+/usr/share/dict/words dosyasý için 'cracklib' kitaplýklarýný ve yeni sözlükler
 yaratýlmasý için gerekli yardýmcý programlarý içerir.
 
 %description -l pl
-Pakiet zawiera s³owniki cracklib'a dla standardowego /usr/dict/words oraz
+Pakiet zawiera s³owniki cracklib'a dla standardowego /usr/share/dict/words oraz
 narzêdzia do tworzenia nowych s³owników.
 
 %prep
-%setup -q -n %{name},%{version}
-%patch -p1
+%setup  -q -n %{name},%{version}
+%patch0 -p1
+%patch1 -p1
 
 %build
 make all
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT/usr/{sbin,lib,include}
-make install ROOT=$RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT%{_prefix}/{sbin,lib,include,share/dict}
 
-strip $RPM_BUILD_ROOT%{_libdir}/lib*.so.*.* $RPM_BUILD_ROOT%{_sbindir}/packer
+make \
+    ROOT=$RPM_BUILD_ROOT \
+    install
+
+strip	 $RPM_BUILD_ROOT%{_sbindir}/packer
+strip	--strip-unneeded $RPM_BUILD_ROOT%{_libdir}/lib*.so.*.*
 
 gzip -9nf README MANIFEST LICENCE POSTER HISTORY
 
@@ -100,18 +106,18 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc {README,MANIFEST,LICENCE,POSTER}.gz
-%attr(755,root,root) %{_libdir}/lib*so.*.*
+%attr(755,root,root) %{_libdir}/lib*so.*
 
 %files devel
 %defattr(644,root,root,755)
 %doc HISTORY.gz
-%attr(755,root,root) %{_libdir}/lib*so
+%attr(755,root,root) %{_libdir}/lib*.so
 %{_includedir}/*
 
 %files dicts
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_sbindir}/*
-%{_libdir}/cracklib_dict*
+%{_datadir}/dict/cracklib_dict*
 
 %changelog
 * Wed Apr 28 1999 Artur Frysiak <wiget@pld.org.pl>
@@ -132,19 +138,3 @@ rm -rf $RPM_BUILD_ROOT
 - added devel subpackage,
 - added %attr and %defattr macros in %files (allows build package from
   non-root account).
-
-* Sat May 09 1998 Prospector System <bugs@redhat.com>
-- translations modified for de, fr, tr
-
-* Tue Mar 10 1998 Cristian Gafton <gafton@redhat.com>
-- updated to 2.7
-- build shared libraries
-
-* Mon Nov 03 1997 Donnie Barnes <djb@redhat.com>
-- added -fPIC
-
-* Mon Oct 13 1997 Donnie Barnes <djb@redhat.com>
-- basic spec file cleanups
-
-* Mon Jun 02 1997 Erik Troan <ewt@redhat.com>
-- built against glibc
