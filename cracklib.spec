@@ -9,7 +9,7 @@ Group:		Development/Libraries
 Group(pl):	Programowanie/Biblioteki
 Copyright:	artistic
 Source:		ftp://coast.cs.purdue.edu/pub/tools/unix/cracklib/%{name}_%{version}.tgz
-Patch:		cracklib-2.7.patch
+Patch:		cracklib.patch
 URL:		ftp://coast.cs.purdue.edu/pub/tools/unix/cracklib/
 Buildroot:	/tmp/%{name}-%{version}-root
 
