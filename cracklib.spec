@@ -120,23 +120,3 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_sbindir}/*
 %{_datadir}/dict/cracklib_dict*
-
-%changelog
-* Wed Apr 28 1999 Artur Frysiak <wiget@pld.org.pl>
-  [2.7-7]
-- build with new rpm
-- striped executable
-
-* Tue Jan 26 1999 Micha³ Kuratczyk <kurkens@polbox.com>
-- added pl translations
-- cosmetics changes
-
-* Sat Aug 15 1998 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
-  [2.7-3]
-- added -q %setup parameter,
-- changed Buildroot to /tmp/%%{name}-%%{version}-root,
-- added using %%{name} and %%{version} in Source and %setup,
-- added stripping shared libraries,
-- added devel subpackage,
-- added %attr and %defattr macros in %files (allows build package from
-  non-root account).
