@@ -100,7 +100,7 @@ Summary(es):	Archivos de inclusión y bibliotecas para cracklib
 Summary(pl):	Pliki nag³ówkowe i dokumentacja dla cracklib
 Summary(pt_BR):	Arquivos de inclusão e bibliotecas para a cracklib
 Group:		Development/Libraries
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description devel
 Header files and documentation for cracklib.
@@ -203,8 +203,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc README MANIFEST LICENCE POSTER HISTORY
-
-%attr(755,root,root) %{_libdir}/lib*so.*
+%attr(755,root,root) %{_libdir}/lib*.so.*.*
 
 %files devel
 %defattr(644,root,root,755)
