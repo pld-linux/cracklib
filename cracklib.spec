@@ -48,10 +48,6 @@ CrackLib, you'll also want to install the cracklib-dicts package.
 Überprüft Paßwörter auf Sicherheitsmerkmale - Länge, Eindeutigkeit,
 Anwesenheit in einer Wörter-Datenbank usw.
 
-%description -l es
-Incluye los diccionarios cracklib para el padrón /usr/dict/words, así
-como, los utilitarios necesarios para crear diccionarios.
-
 %description -l fr
 Vérifie les caractéristiques liées à la sécurité des mots de passe -
 longueur, unicité, s'ils sont dans une base de mots, etc.
@@ -144,8 +140,8 @@ Standard-/usr/share/dict/Wörter sowie Utilities zum Erstellen neuer
 Wörterbücher"
 
 %description dicts -l es
-Incluye el diccionario cracklib para el padrón /usr/dict/words, bien
-como utilitarios necesarios a creación de nuevos diccionarios.
+Incluye el diccionario cracklib para el padrón /usr/share/dict/words,
+y utilitarios necesarios a creación de nuevos diccionarios.
 
 %description dicts -l fr
 Contient les dictionnaires cracklib pour le /usr/share/dict/words
