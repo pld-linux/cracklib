@@ -103,7 +103,7 @@ rm -rf $RPM_BUILD_ROOT
 - added using %%{name} and %%{version} in Source and %setup,
 - added stripping shared libraries,
 - added devel subpackage,
-- added %attr and %defattr macros in %files (allow build package from
+- added %attr and %defattr macros in %files (allows build package from
   non-root account).
 
 * Sat May 09 1998 Prospector System <bugs@redhat.com>
