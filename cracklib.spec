@@ -186,7 +186,7 @@ sözlükler yaratýlmasý için gerekli yardýmcý programlarý içerir.
 %build
 %{__make} all \
 	CC="%{__cc}" \
-	OPTFLAGS="%{rpmcflags} %{?with_pp:-fno-stack-protector}"
+	OPTFLAGS="%{rpmcflags} %{?with_ssp:-fno-stack-protector}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
