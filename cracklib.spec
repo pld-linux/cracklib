@@ -57,7 +57,7 @@ Requires:	%{name} = %{version}
 %description devel
 Header files and documentation for cracklib.
 
-%description -l pl
+%description devel -l pl
 Pliki nag³ówkowe i dokumentacja dla cracklib.
 
 %package dicts
@@ -74,26 +74,26 @@ Group(pl):	Aplikacje/System
 Includes the cracklib dictionaries for the standard /usr/dict/words,
 as well as utilities needed to create new dictionaries.
 
-%description -l de dicts
+%description dicts -l de
 Enthält die Cracklib-Wörterbücher für die
 Standard-/usr/share/dict/Wörter sowie Utilities zum Erstellen neuer
 Wörterbücher"
 
-%description -l fr dicts
+%description dicts -l fr
 Contient les dictionnaires cracklib pour le /usr/share/dict/words
 standard, ainsi que les utilitaires nécessaires à la création de
 nouveaux dictionnaires.
 
-%description -l pl
+%description dicts -l pl
 Pakiet zawiera s³owniki cracklib'a dla standardowego
 /usr/share/dict/words oraz narzêdzia do tworzenia nowych s³owników.
 
-%description -l tr dicts
+%description dicts -l tr
 /usr/share/dict/words dosyasý için 'cracklib' kitaplýklarýný ve yeni
 sözlükler yaratýlmasý için gerekli yardýmcý programlarý içerir.
 
 %prep
-%setup  -q -n %{name},%{version}
+%setup	-q -n %{name},%{version}
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
@@ -113,7 +113,7 @@ gzip -9nf README MANIFEST LICENCE POSTER HISTORY
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post   -p /sbin/ldconfig
+%post	-p /sbin/ldconfig
 %postun -p /sbin/ldconfig
 
 %files
