@@ -1,6 +1,6 @@
 diff -Nur cracklib,2.7/Makefile cracklib,2.7.pld/Makefile
---- cracklib,2.7/Makefile	Fri Jun  4 16:29:07 1999
-+++ cracklib,2.7.pld/Makefile	Fri Jun  4 16:27:13 1999
+--- cracklib,2.7/Makefile	Sun Jun 13 11:05:49 1999
++++ cracklib,2.7.pld/Makefile	Sun Jun 13 11:05:30 1999
 @@ -16,12 +16,12 @@
  ###
  # set this to the absolute path (less extn) of compressed dict.
@@ -12,13 +12,25 @@ diff -Nur cracklib,2.7/Makefile cracklib,2.7.pld/Makefile
  # Set this to the path of one or more files continaing wordlists.
  
 -SRCDICTS=/usr/dict/words /usr/dict/extra.words
-+SRCDICTS=/usr/share/dict/words /usr/share/dict/extra.words
++SRCDICTS=/usr/share/dict/words 
  
  ###
  # If you have installed the cracklib-dicts directory, use this
+diff -Nur cracklib,2.7/cracklib/crack.h cracklib,2.7.pld/cracklib/crack.h
+--- cracklib,2.7/cracklib/crack.h	Sun Jun 13 11:05:49 1999
++++ cracklib,2.7.pld/cracklib/crack.h	Sun Jun 13 11:04:48 1999
+@@ -3,7 +3,7 @@
+ #define CRACKLIB_H
+ 
+ /* Pass this function a password (pw) and a path to the
+- * dictionaries (/usr/lib/cracklib_dict should be specified)
++ * dictionaries (/usr/share/dict/cracklib_dict should be specified)
+  * and it will either return a NULL string, meaning that the
+  * password is good, or a pointer to a string that explains the
+  * problem with the password.
 diff -Nur cracklib,2.7/cracklib/genrules.pl cracklib,2.7.pld/cracklib/genrules.pl
 --- cracklib,2.7/cracklib/genrules.pl	Mon Dec 15 02:15:49 1997
-+++ cracklib,2.7.pld/cracklib/genrules.pl	Fri Jun  4 16:28:17 1999
++++ cracklib,2.7.pld/cracklib/genrules.pl	Sun Jun 13 11:04:48 1999
 @@ -1,4 +1,4 @@
 -#!/usr/local/bin/perl
 +#!/usr/bin/perl
@@ -26,10 +38,14 @@ diff -Nur cracklib,2.7/cracklib/genrules.pl cracklib,2.7.pld/cracklib/genrules.p
  ###
  # This program is copyright Alec Muffett 1997. The author disclaims all
 diff -Nur cracklib,2.7/util/create-cracklib-dict cracklib,2.7.pld/util/create-cracklib-dict
---- cracklib,2.7/util/create-cracklib-dict	Fri Jun  4 16:29:07 1999
-+++ cracklib,2.7.pld/util/create-cracklib-dict	Fri Jun  4 16:27:58 1999
-@@ -9,7 +9,7 @@
-     echo "/usr/lib/cracklib_dict.*"
+--- cracklib,2.7/util/create-cracklib-dict	Sun Jun 13 11:05:49 1999
++++ cracklib,2.7.pld/util/create-cracklib-dict	Sun Jun 13 11:04:48 1999
+@@ -6,10 +6,10 @@
+     echo "This script takes one or more word list files as arguments"
+     echo "and converts them into cracklib dictionaries for use"
+     echo "by password checking programs. The results are placed in"
+-    echo "/usr/lib/cracklib_dict.*"
++    echo "/usr/share/dict/cracklib_dict.*"
      echo
      echo "Example:"
 -    echo "/usr/sbin/create-cracklib-dict /usr/dict/words"
