@@ -4,7 +4,7 @@ Summary(pl):	Biblioteka sprawdzania hase³
 Summary(tr):	Parola denetim kitaplýðý
 Name:		cracklib
 Version:	2.7
-Release:	14
+Release:	15
 License:	Artistic
 Group:		Libraries
 Source0:	ftp://coast.cs.purdue.edu/pub/tools/unix/cracklib/%{name}_%{version}.tgz
@@ -83,7 +83,9 @@ sözlükler yaratýlmasý için gerekli yardýmcý programlarý içerir.
 %patch2 -p1
 
 %build
-%{__make} all
+%{__make} all \
+	CC="%{__cc}" \
+	OPTFLAGS="%{rpmcflags}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -91,6 +93,8 @@ install -d $RPM_BUILD_ROOT{%{_sbindir},%{_libdir},%{_includedir},%{_datadir}/dic
 
 %{__make} install \
 	ROOT=$RPM_BUILD_ROOT
+
+install cracklib/packer.h $RPM_BUILD_ROOT%{_includedir}
 
 gzip -9nf README MANIFEST LICENCE POSTER HISTORY
 

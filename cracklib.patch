@@ -37,7 +37,7 @@
 -CFLAGS= -O -I../cracklib -DIN_CRACKLIB
 +LIB	= libcrack.so
 +OBJ	= fascist.o packlib.o rules.o stringlib.o
-+CFLAGS	= $(RPM_OPT_FLAGS) -g -I../cracklib -DIN_CRACKLIB -fPIC
++CFLAGS	= $(OPTFLAGS) -I../cracklib -DIN_CRACKLIB -fPIC
 +LD	= ld
  
 -$(LIB):	$(OBJ)
@@ -83,7 +83,7 @@
  
 -CFLAGS= -O -I../cracklib '-DCRACKLIB_DICTPATH="$(DICTPATH)"'
 -LIBS=	../cracklib/libcrack.a
-+CFLAGS	= $(RPM_OPT_FLAGS) -I../cracklib '-DCRACKLIB_DICTPATH="$(DICTPATH)"'
++CFLAGS	= $(OPTFLAGS) -I../cracklib '-DCRACKLIB_DICTPATH="$(DICTPATH)"'
 +LDFLAGS	= -L../cracklib -lcrack
 +LIBS	= ../cracklib/libcrack.so
  
@@ -92,23 +92,23 @@
  
  packer: packer.o $(LIBS)
 -	cc $(CFLAGS) -o $@ $@.o $(LIBS)
-+	cc $(CFLAGS) -o $@ $@.o $(LDFLAGS)
++	$(CC) $(CFLAGS) -o $@ $@.o $(LDFLAGS)
  
  unpacker: unpacker.o $(LIBS)
 -	cc $(CFLAGS) -o $@ $@.o $(LIBS)
-+	cc $(CFLAGS) -o $@ $@.o $(LDFLAGS)
++	$(CC) $(CFLAGS) -o $@ $@.o $(LDFLAGS)
  
  testnum: testnum.o $(LIBS)
 -	cc $(CFLAGS) -o $@ $@.o $(LIBS)
-+	cc $(CFLAGS) -o $@ $@.o $(LDFLAGS)
++	$(CC) $(CFLAGS) -o $@ $@.o $(LDFLAGS)
  
  teststr: teststr.o $(LIBS)
 -	cc $(CFLAGS) -o $@ $@.o $(LIBS)
-+	cc $(CFLAGS) -o $@ $@.o $(LDFLAGS)
++	$(CC) $(CFLAGS) -o $@ $@.o $(LDFLAGS)
  
  testlib: testlib.o $(LIBS)
 -	cc $(CFLAGS) -o $@ $@.o $(LIBS)
-+	cc $(CFLAGS) -o $@ $@.o $(LDFLAGS)
++	$(CC) $(CFLAGS) -o $@ $@.o $(LDFLAGS)
  
  clean:
  	-rm *.o *~ all
