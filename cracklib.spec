@@ -34,7 +34,7 @@ bulunmamalarý gibi güvenlikle ilgili özelliklerini kontrol eder.
 Sprawdza has³a pod k±tem bezpieczeñstwa - d³ugo¶æ, unikalno¶æ, czy
 wystêpuj± w s³owniu itp.
 
-%package	devel
+%package devel
 Summary:	Header files and documentation for cracklib
 Summary(pl):	Pliki nag³ówkowe i dokumentacja dla cracklib
 Group:		Development/Libraries
@@ -47,7 +47,7 @@ Header files and documentation for cracklib.
 %description -l pl
 Pliki nag³ówkowe i dokumentacja dla cracklib.
 
-%package	dicts
+%package dicts
 Summary:	Standard dictionaries (/usr/share/dict/words)
 Summary(de):	Standard-Wörterbücher (/usr/share/dict/words)
 Summary(fr):	Dictionnaires standards (/usr/share/dict/words)
@@ -88,20 +88,19 @@ make all
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_sbindir},%{_libdir},%{_includedir},%{_datadir}/dict}
 
-make \
-    ROOT=$RPM_BUILD_ROOT \
-    install
+make install \
+	ROOT=$RPM_BUILD_ROOT
 
 strip	 $RPM_BUILD_ROOT%{_sbindir}/packer
 strip	--strip-unneeded $RPM_BUILD_ROOT%{_libdir}/lib*.so.*.*
 
 gzip -9nf README MANIFEST LICENCE POSTER HISTORY
 
-%clean
-rm -rf $RPM_BUILD_ROOT
-
 %post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
+
+%clean
+rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
