@@ -86,7 +86,7 @@ make all
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_prefix}/{sbin,lib,include,share/dict}
+install -d $RPM_BUILD_ROOT{%{_sbindir},%{_libdir},%{_includedir},%{_datadir}/dict}
 
 make \
     ROOT=$RPM_BUILD_ROOT \
