@@ -5,8 +5,8 @@ Summary(pl):	Biblioteka sprawdzania hase³
 Name:		cracklib
 Version:	2.7
 Release:	4
-Group:		Development/Libraries
-Group(pl):	Programowanie/Biblioteki
+Group:		Libraries
+Group(pl):	Biblioteki
 Copyright:	artistic
 Source:		ftp://coast.cs.purdue.edu/pub/tools/unix/cracklib/%{name}_%{version}.tgz
 Patch:		cracklib.patch
