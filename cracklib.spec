@@ -1,5 +1,7 @@
-%bcond_with	pp	# disable stack protector (vide dietlibc.spec)
-
+#
+# Conditional build:
+%bcond_with	ssp	# disable stack-smashing protector (vide dietlibc.spec)
+#
 Summary:	Password checking library
 Summary(es):	Biblioteca de chequeo de contraseñas
 Summary(fr):	Bibliothèque de vérification de mots de passe
