@@ -4,14 +4,15 @@ Summary(pl):	Biblioteka sprawdzania hase³
 Summary(tr):	Parola denetim kitaplýðý
 Name:		cracklib
 Version:	2.7
-Release:	8
+Release:	9
+License:	Artistic
 Group:		Libraries
+Group(de):	Libraries
 Group(fr):	Librairies
 Group(pl):	Biblioteki
-Copyright:	artistic
 Source0:	ftp://coast.cs.purdue.edu/pub/tools/unix/cracklib/%{name}_%{version}.tgz
-Patch0:		cracklib.patch
-Patch1:		cracklib-pld.patch
+Patch0:		%{name}.patch
+Patch1:		%{name}-pld.patch
 BuildRequires:	words
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -39,6 +40,7 @@ bulunmamalarý gibi güvenlikle ilgili özelliklerini kontrol eder.
 Summary:	Header files and documentation for cracklib
 Summary(pl):	Pliki nag³ówkowe i dokumentacja dla cracklib
 Group:		Development/Libraries
+Group(de):	Entwicklung/Libraries
 Group(fr):	Development/Librairies
 Group(pl):	Programowanie/Biblioteki
 Requires:	%{name} = %{version}
@@ -55,8 +57,9 @@ Summary(de):	Standard-Wörterbücher (/usr/share/dict/words)
 Summary(fr):	Dictionnaires standards (/usr/share/dict/words)
 Summary(pl):	Standardowe s³owniki (/usr/share/dict/words)
 Summary(tr):	Standart sözlükler (/usr/share/dict/words)
-Group:		Utilities/System
-Group(pl):	Narzêdzia/System
+Group:		Applications/System
+Group(de):	Applikationen/System
+Group(pl):	Aplikacje/System
 
 %description dicts
 Includes the cracklib dictionaries for the standard /usr/dict/words,
@@ -94,9 +97,6 @@ install -d $RPM_BUILD_ROOT{%{_sbindir},%{_libdir},%{_includedir},%{_datadir}/dic
 
 %{__make} install \
 	ROOT=$RPM_BUILD_ROOT
-
-strip	 $RPM_BUILD_ROOT%{_sbindir}/packer
-strip	--strip-unneeded $RPM_BUILD_ROOT%{_libdir}/lib*.so.*.*
 
 gzip -9nf README MANIFEST LICENCE POSTER HISTORY
 
