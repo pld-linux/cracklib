@@ -12,7 +12,7 @@ Source:		ftp://coast.cs.purdue.edu/pub/tools/unix/cracklib/%{name}_%{version}.tg
 Patch0:		cracklib.patch
 Patch1:		cracklib-pld.patch
 BuildRequires:	words
-Buildroot:	/tmp/%{name}-%{version}-root
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 Checks passwords for security related characteristics - length, uniqueness, 
