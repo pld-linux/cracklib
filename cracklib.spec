@@ -4,7 +4,7 @@ Summary(tr):	Parola denetim kitaplýðý
 Summary(pl):	Biblioteka sprawdzania hase³
 Name:		cracklib
 Version:	2.7
-Release:	6
+Release:	7
 Group:		Libraries
 Group(pl):	Biblioteki
 Copyright:	artistic
@@ -87,7 +87,7 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT/usr/{sbin,lib,include}
 make install ROOT=$RPM_BUILD_ROOT
 
-strip $RPM_BUILD_ROOT/usr/lib/lib*.so.*.*
+strip $RPM_BUILD_ROOT/usr/lib/lib*.so.*.* $RPM_BUILD_ROOT/usr/sbin/packer
 
 gzip -9nf README MANIFEST LICENCE POSTER HISTORY
 
@@ -114,6 +114,11 @@ rm -rf $RPM_BUILD_ROOT
 /usr/lib/cracklib_dict*
 
 %changelog
+* Wed Apr 28 1999 Artur Frysiak <wiget@pld.org.pl>
+  [2.7-7]
+- build with new rpm
+- striped executable
+
 * Tue Jan 26 1999 Micha³ Kuratczyk <kurkens@polbox.com>
 - added pl translations
 - cosmetics changes
