@@ -4,15 +4,20 @@ Summary(pl):	Biblioteka sprawdzania hase³
 Summary(tr):	Parola denetim kitaplığı
 Name:		cracklib
 Version:	2.7
-Release:	9
+Release:	14
 License:	Artistic
 Group:		Libraries
 Group(de):	Libraries
+Group(es):	Bibliotecas
 Group(fr):	Librairies
 Group(pl):	Biblioteki
+Group(pt_BR):	Bibliotecas
+Group(ru):	âÉÂÌÉÏÔÅËÉ
+Group(uk):	â¦ÂÌ¦ÏÔÅËÉ
 Source0:	ftp://coast.cs.purdue.edu/pub/tools/unix/cracklib/%{name}_%{version}.tgz
 Patch0:		%{name}.patch
 Patch1:		%{name}-pld.patch
+Patch2:		%{name}-nss.patch
 BuildRequires:	words
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -41,8 +46,12 @@ Summary:	Header files and documentation for cracklib
 Summary(pl):	Pliki nag³ówkowe i dokumentacja dla cracklib
 Group:		Development/Libraries
 Group(de):	Entwicklung/Libraries
+Group(es):	Desarrollo/Bibliotecas
 Group(fr):	Development/Librairies
 Group(pl):	Programowanie/Biblioteki
+Group(pt_BR):	Desenvolvimento/Bibliotecas
+Group(ru):	òÁÚÒÁÂÏÔËÁ/âÉÂÌÉÏÔÅËÉ
+Group(uk):	òÏÚÒÏÂËÁ/â¦ÂÌ¦ÏÔÅËÉ
 Requires:	%{name} = %{version}
 
 %description devel
@@ -87,6 +96,7 @@ sözlükler yaratılması için gerekli yardımcı programları içerir.
 %setup  -q -n %{name},%{version}
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
 %{__make} all
