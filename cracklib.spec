@@ -11,7 +11,7 @@ Copyright:	artistic
 Source:		%{name}_%{version}.tgz
 Patch0:		cracklib.patch
 Patch1:		cracklib-pld.patch
-BuildPrereq:	words
+BuildRequires:	words
 URL:		ftp://coast.cs.purdue.edu/pub/tools/unix/cracklib
 Buildroot:	/tmp/%{name}-%{version}-root
 
