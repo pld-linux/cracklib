@@ -11,7 +11,7 @@ Version:	2.7
 Release:	16
 License:	Artistic
 Group:		Libraries
-Source0:	ftp://coast.cs.purdue.edu/pub/tools/unix/cracklib/%{name}_%{version}.tgz
+Source0:	ftp://coast.cs.purdue.edu/pub/tools/unix/libs/cracklib/%{name}_%{version}.tgz
 Patch0:		%{name}.patch
 Patch1:		%{name}-pld.patch
 Patch2:		%{name}-nss.patch
