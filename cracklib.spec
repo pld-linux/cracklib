@@ -6,25 +6,26 @@ Name:		cracklib
 Version:	2.7
 Release:	8
 Group:		Libraries
+Group(fr):	Librairies
 Group(pl):	Biblioteki
 Copyright:	artistic
-Source:		ftp://coast.cs.purdue.edu/pub/tools/unix/cracklib/%{name}_%{version}.tgz
+Source0:	ftp://coast.cs.purdue.edu/pub/tools/unix/cracklib/%{name}_%{version}.tgz
 Patch0:		cracklib.patch
 Patch1:		cracklib-pld.patch
 BuildRequires:	words
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-Checks passwords for security related characteristics - length, uniqueness, 
-whether they are in a word database, etc.
+Checks passwords for security related characteristics - length,
+uniqueness, whether they are in a word database, etc.
 
 %description -l de
-Überprüft Paßwörter auf Sicherheitsmerkmale - Länge, Eindeutigkeit, 
+Überprüft Paßwörter auf Sicherheitsmerkmale - Länge, Eindeutigkeit,
 Anwesenheit in einer Wörter-Datenbank usw.
 
 %description -l fr
-Vérifie les caractéristiques liées à la sécurité des  mots de passe - longueur,
-unicité, s'ils sont dans une base de mots, etc.
+Vérifie les caractéristiques liées à la sécurité des mots de passe -
+longueur, unicité, s'ils sont dans une base de mots, etc.
 
 %description -l pl
 Sprawdza has³a pod k±tem bezpieczeñstwa - d³ugo¶æ, unikalno¶æ, czy
@@ -38,6 +39,7 @@ bulunmamalarý gibi güvenlikle ilgili özelliklerini kontrol eder.
 Summary:	Header files and documentation for cracklib
 Summary(pl):	Pliki nag³ówkowe i dokumentacja dla cracklib
 Group:		Development/Libraries
+Group(fr):	Development/Librairies
 Group(pl):	Programowanie/Biblioteki
 Requires:	%{name} = %{version}
 
@@ -57,24 +59,26 @@ Group:		Utilities/System
 Group(pl):	Narzêdzia/System
 
 %description dicts
-Includes the cracklib dictionaries for the standard /usr/dict/words, as
-well as utilities needed to create new dictionaries.
+Includes the cracklib dictionaries for the standard /usr/dict/words,
+as well as utilities needed to create new dictionaries.
 
 %description -l de dicts
-Enthält die Cracklib-Wörterbücher für die Standard-/usr/share/dict/Wörter sowie
-Utilities zum Erstellen neuer Wörterbücher"
+Enthält die Cracklib-Wörterbücher für die
+Standard-/usr/share/dict/Wörter sowie Utilities zum Erstellen neuer
+Wörterbücher"
 
 %description -l fr dicts
-Contient les dictionnaires cracklib pour le /usr/share/dict/words standard,
-ainsi que les utilitaires nécessaires à la création de nouveaux dictionnaires.
+Contient les dictionnaires cracklib pour le /usr/share/dict/words
+standard, ainsi que les utilitaires nécessaires à la création de
+nouveaux dictionnaires.
 
 %description -l pl
-Pakiet zawiera s³owniki cracklib'a dla standardowego /usr/share/dict/words oraz
-narzêdzia do tworzenia nowych s³owników.
+Pakiet zawiera s³owniki cracklib'a dla standardowego
+/usr/share/dict/words oraz narzêdzia do tworzenia nowych s³owników.
 
 %description -l tr dicts
-/usr/share/dict/words dosyasý için 'cracklib' kitaplýklarýný ve yeni sözlükler
-yaratýlmasý için gerekli yardýmcý programlarý içerir.
+/usr/share/dict/words dosyasý için 'cracklib' kitaplýklarýný ve yeni
+sözlükler yaratýlmasý için gerekli yardýmcý programlarý içerir.
 
 %prep
 %setup  -q -n %{name},%{version}
