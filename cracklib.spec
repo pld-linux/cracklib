@@ -16,7 +16,7 @@ Release:	18
 License:	Artistic
 Group:		Libraries
 Source0:	ftp://coast.cs.purdue.edu/pub/tools/unix/libs/cracklib/%{name}_%{version}.tgz
-# Source0-md5: 7f810e310c7f2df33d1eaa2b41ab2435
+# Source0-md5:	7f810e310c7f2df33d1eaa2b41ab2435
 Patch0:		%{name}.patch
 Patch1:		%{name}-pld.patch
 Patch2:		%{name}-nss.patch
