@@ -86,13 +86,13 @@ sözlükler yaratýlmasý için gerekli yardýmcý programlarý içerir.
 %patch1 -p1
 
 %build
-make all
+%{__make} all
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_sbindir},%{_libdir},%{_includedir},%{_datadir}/dict}
 
-make install \
+%{__make} install \
 	ROOT=$RPM_BUILD_ROOT
 
 strip	 $RPM_BUILD_ROOT%{_sbindir}/packer
