@@ -190,8 +190,6 @@ install -d $RPM_BUILD_ROOT{%{_sbindir},%{_libdir},%{_includedir},%{_datadir}/dic
 
 install cracklib/packer.h $RPM_BUILD_ROOT%{_includedir}
 
-gzip -9nf README MANIFEST LICENCE POSTER HISTORY
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -200,13 +198,12 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc {README,MANIFEST,LICENCE,POSTER}.gz
+%doc README MANIFEST LICENCE POSTER HISTORY
 
 %attr(755,root,root) %{_libdir}/lib*so.*
 
 %files devel
 %defattr(644,root,root,755)
-%doc HISTORY.gz
 %attr(755,root,root) %{_libdir}/lib*.so
 %{_includedir}/*
 
