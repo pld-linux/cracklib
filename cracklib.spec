@@ -12,7 +12,7 @@ Summary(tr):	Parola denetim kitaplЩПЩ
 Summary(uk):	Б╕бл╕отека перев╕рки парол╕в
 Name:		cracklib
 Version:	2.7
-Release:	18
+Release:	19
 License:	Artistic
 Group:		Libraries
 Source0:	ftp://coast.cs.purdue.edu/pub/tools/unix/libs/cracklib/%{name}_%{version}.tgz
