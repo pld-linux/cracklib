@@ -4,7 +4,7 @@ Summary(tr):	Parola denetim kitaplýðý
 Summary(pl):	Biblioteka sprawdzania hase³
 Name:		cracklib
 Version:	2.7
-Release:	4
+Release:	6
 Group:		Libraries
 Group(pl):	Biblioteki
 Copyright:	artistic
