@@ -1,6 +1,7 @@
 #
 # Conditional build:
 %bcond_with	ssp	# disable stack-smashing protector (vide dietlibc.spec)
+%bcond_with	words	# bigger words database
 #
 Summary:	Password checking library
 Summary(es):	Biblioteca de chequeo de contraseЯas
@@ -11,16 +12,19 @@ Summary(ru):	Библиотека проверки паролей
 Summary(tr):	Parola denetim kitaplЩПЩ
 Summary(uk):	Б╕бл╕отека перев╕рки парол╕в
 Name:		cracklib
-Version:	2.7
-Release:	19
-License:	Artistic
+Version:	2.8.3
+Release:	0.1
+License:	GPL v2
 Group:		Libraries
-Source0:	ftp://coast.cs.purdue.edu/pub/tools/unix/libs/cracklib/%{name}_%{version}.tgz
-# Source0-md5:	7f810e310c7f2df33d1eaa2b41ab2435
-Patch0:		%{name}.patch
-Patch1:		%{name}-pld.patch
-Patch2:		%{name}-nss.patch
-Patch3:		%{name}-libdir.patch
+Source0:	http://dl.sourceforge.net/cracklib/%{name}-%{version}.tar.gz
+# Source0-md5:	13f82f75b892cbd0ba7cb9069e307006
+Source1:	http://dl.sourceforge.net/cracklib/cracklib-words.gz
+# Source1-md5:	d18e670e5df560a8745e1b4dede8f84f
+URL:		http://sourceforge.net/projects/cracklib/
+Patch0:		%{name}-pld.patch
+#Patch1:		%{name}.patch
+#Patch2:		%{name}-nss.patch
+#Patch3:		%{name}-libdir.patch
 BuildRequires:	words
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -173,14 +177,18 @@ sЖzlЭkler yaratЩlmasЩ iГin gerekli yardЩmcЩ programlarЩ iГerir.
 утил╕ти, необх╕дн╕ для створення нових словник╕в.
 
 %prep
-%setup	-q -n %{name},%{version}
-%patch0 -p1
-%patch1 -p1
-%patch2 -p1
-%patch3 -p1
+%setup	-q
+%patch0 -p0
+#%patch1 -p1
+#%patch2 -p1
+#%patch3 -p1
+%if %{with words} 
+install %{SOURCE1} dicts/
+%endif
 
 %build
-%{__make} all \
+%configure
+%{__make} \
 	CC="%{__cc}" \
 	OPTFLAGS="%{rpmcflags} %{?with_ssp:-fno-stack-protector}"
 
@@ -189,10 +197,8 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_sbindir},%{_libdir},%{_includedir},%{_datadir}/dict}
 
 %{__make} install \
-	libdir=%{_libdir} \
-	ROOT=$RPM_BUILD_ROOT
-
-install cracklib/packer.h $RPM_BUILD_ROOT%{_includedir}
+	DESTDIR=$RPM_BUILD_ROOT
+util/cracklib-format dicts/cracklib* | util/cracklib-packer $RPM_BUILD_ROOT/%{_datadir}/dict/cracklib_dict
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -202,7 +208,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc README MANIFEST LICENCE POSTER HISTORY
+%doc ChangeLog NEWS README
 %attr(755,root,root) %{_libdir}/lib*.so.*.*
 
 %files devel
