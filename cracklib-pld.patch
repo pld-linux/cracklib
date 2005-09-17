@@ -1,56 +1,22 @@
-diff -Nur cracklib,2.7/Makefile cracklib,2.7.pld/Makefile
---- cracklib,2.7/Makefile	Sun Jun 13 11:05:49 1999
-+++ cracklib,2.7.pld/Makefile	Sun Jun 13 11:05:30 1999
-@@ -16,12 +16,12 @@
- ###
- # set this to the absolute path (less extn) of compressed dict.
+--- util/Makefile.in.orig	2005-04-12 04:13:41.000000000 +0200
++++ util/Makefile.in	2005-09-17 16:13:18.000000000 +0200
+@@ -143,7 +143,7 @@
  
--DICTPATH="/usr/lib/cracklib_dict"
-+DICTPATH="/usr/share/dict/cracklib_dict"
+ LDADD = ../lib/libcrack.la
  
- ###
- # Set this to the path of one or more files continaing wordlists.
+-AM_CPPFLAGS = -I. -I.. -I$(top_srcdir)/lib '-DDEFAULT_CRACKLIB_DICT="$(pkgdatadir)/pw_dict"'
++AM_CPPFLAGS = -I. -I.. -I$(top_srcdir)/lib '-DDEFAULT_CRACKLIB_DICT="$(datadir)/dict/cracklib_dict"'
  
--SRCDICTS=/usr/dict/words /usr/dict/extra.words
-+SRCDICTS=/usr/share/dict/words 
+ cracklib_check_SOURCES = check.c
+ cracklib_check_LDADD = $(LDADD)
+--- lib/Makefile.in.orig	2005-04-12 04:13:38.000000000 +0200
++++ lib/Makefile.in	2005-09-17 16:14:08.000000000 +0200
+@@ -152,7 +152,7 @@
+ #
+ libcrack_la_LDFLAGS = -version-info 10:0:8
  
- ###
- # If you have installed the cracklib-dicts directory, use this
-diff -Nur cracklib,2.7/cracklib/crack.h cracklib,2.7.pld/cracklib/crack.h
---- cracklib,2.7/cracklib/crack.h	Sun Jun 13 11:05:49 1999
-+++ cracklib,2.7.pld/cracklib/crack.h	Sun Jun 13 11:04:48 1999
-@@ -3,7 +3,7 @@
- #define CRACKLIB_H
- 
- /* Pass this function a password (pw) and a path to the
-- * dictionaries (/usr/lib/cracklib_dict should be specified)
-+ * dictionaries (/usr/share/dict/cracklib_dict should be specified)
-  * and it will either return a NULL string, meaning that the
-  * password is good, or a pointer to a string that explains the
-  * problem with the password.
-diff -Nur cracklib,2.7/cracklib/genrules.pl cracklib,2.7.pld/cracklib/genrules.pl
---- cracklib,2.7/cracklib/genrules.pl	Mon Dec 15 02:15:49 1997
-+++ cracklib,2.7.pld/cracklib/genrules.pl	Sun Jun 13 11:04:48 1999
-@@ -1,4 +1,4 @@
--#!/usr/local/bin/perl
-+#!/usr/bin/perl
- 
- ###
- # This program is copyright Alec Muffett 1997. The author disclaims all
-diff -Nur cracklib,2.7/util/create-cracklib-dict cracklib,2.7.pld/util/create-cracklib-dict
---- cracklib,2.7/util/create-cracklib-dict	Sun Jun 13 11:05:49 1999
-+++ cracklib,2.7.pld/util/create-cracklib-dict	Sun Jun 13 11:04:48 1999
-@@ -6,10 +6,10 @@
-     echo "This script takes one or more word list files as arguments"
-     echo "and converts them into cracklib dictionaries for use"
-     echo "by password checking programs. The results are placed in"
--    echo "/usr/lib/cracklib_dict.*"
-+    echo "/usr/share/dict/cracklib_dict.*"
-     echo
-     echo "Example:"
--    echo "/usr/sbin/create-cracklib-dict /usr/dict/words"
-+    echo "/usr/sbin/create-cracklib-dict /usr/share/dict/words"
- else
--    /usr/sbin/mkdict $* | /usr/sbin/packer /usr/lib/cracklib_dict
-+    /usr/sbin/mkdict $* | /usr/sbin/packer /usr/share/dict/cracklib_dict
- fi
+-AM_CPPFLAGS = -I. -I.. -I$(top_srcdir)/lib -DIN_CRACKLIB '-DDEFAULT_CRACKLIB_DICT="$(pkgdatadir)/pw_dict"'
++AM_CPPFLAGS = -I. -I.. -I$(top_srcdir)/lib -DIN_CRACKLIB '-DDEFAULT_CRACKLIB_DICT="$(datadir)/dict/cracklib_dict"'
+ subdir = lib
+ ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
+ mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
