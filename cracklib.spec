@@ -1,6 +1,5 @@
 #
 # Conditional build:
-%bcond_with	ssp	# disable stack-smashing protector (vide dietlibc.spec)
 %bcond_with	words	# bigger words database
 #
 Summary:	Password checking library
@@ -13,7 +12,7 @@ Summary(tr):	Parola denetim kitaplýðý
 Summary(uk):	â¦ÂÌ¦ÏÔÅËÁ ÐÅÒÅ×¦ÒËÉ ÐÁÒÏÌ¦×
 Name:		cracklib
 Version:	2.8.3
-Release:	0.1
+Release:	0.2
 License:	GPL v2
 Group:		Libraries
 Source0:	http://dl.sourceforge.net/cracklib/%{name}-%{version}.tar.gz
@@ -22,9 +21,6 @@ Source1:	http://dl.sourceforge.net/cracklib/cracklib-words.gz
 # Source1-md5:	d18e670e5df560a8745e1b4dede8f84f
 URL:		http://sourceforge.net/projects/cracklib/
 Patch0:		%{name}-pld.patch
-#Patch1:		%{name}.patch
-#Patch2:		%{name}-nss.patch
-#Patch3:		%{name}-libdir.patch
 BuildRequires:	words
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -57,8 +53,18 @@ Vérifie les caractéristiques liées à la sécurité des mots de passe -
 longueur, unicité, s'ils sont dans une base de mots, etc.
 
 %description -l pl
-Sprawdza has³a pod k±tem bezpieczeñstwa - d³ugo¶æ, unikalno¶æ, czy
-wystêpuj± w s³owniu itp.
+CrackLib sprawdza has³a pod k±tem bezpieczeñstwa. Mo¿na u¿yæ tej
+biblioteki do powstrzymywania u¿ytkowników przed wybieraniem hase³
+³atwych do odgadniêcia. CrackLib przeprowadza nastêpuj±ce testy:
+
+- próbuje wygenerowaæ s³owa z nazwy u¿ytkownika i wpisu gecos, a
+  nastêpnie porównuje je z has³em
+- szuka prostych wzorców w ha¶le
+- szuka has³a w s³owniku
+
+CrackLib to biblioteka zawieraj±ca funkcjê C s³u¿±c± do sprawdzania
+has³a oraz inne funkcje C. Nie jest to zamiennik programu passwd -
+musi byæ u¿yty w po³±czeniu z istniej±cym programem passwd.
 
 %description -l pt_BR
 Inclui os dicionários cracklib para o padrão /usr/dict/words, assim
@@ -120,6 +126,18 @@ Pliki nag³ówkowe i dokumentacja dla cracklib.
 Este pacote contém os arquivos de inclusão e bibliotecas que são
 necessários para desenvolver programas que usam a cracklib.
 
+%package static
+Summary:	Static cracklib library
+Summary(pl):	Statyczna biblioteka cracklib
+Group:		Development/Libraries
+Requires:	%{name}-devel = %{version}-%{release}
+
+%description static
+Static cracklib library.
+
+%description static -l pl
+Statyczna biblioteka cracklib.
+
 %package dicts
 Summary:	Standard dictionaries (/usr/share/dict/words)
 Summary(de):	Standard-Wörterbücher (/usr/share/dict/words)
@@ -179,18 +197,13 @@ sözlükler yaratýlmasý için gerekli yardýmcý programlarý içerir.
 %prep
 %setup	-q
 %patch0 -p0
-#%patch1 -p1
-#%patch2 -p1
-#%patch3 -p1
 %if %{with words} 
 install %{SOURCE1} dicts/
 %endif
 
 %build
 %configure
-%{__make} \
-	CC="%{__cc}" \
-	OPTFLAGS="%{rpmcflags} %{?with_ssp:-fno-stack-protector}"
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -198,7 +211,8 @@ install -d $RPM_BUILD_ROOT{%{_sbindir},%{_libdir},%{_includedir},%{_datadir}/dic
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
-util/cracklib-format dicts/cracklib* | util/cracklib-packer $RPM_BUILD_ROOT/%{_datadir}/dict/cracklib_dict
+
+util/cracklib-format dicts/cracklib* | util/cracklib-packer $RPM_BUILD_ROOT%{_datadir}/dict/cracklib_dict
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -209,12 +223,17 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc ChangeLog NEWS README
-%attr(755,root,root) %{_libdir}/lib*.so.*.*
+%attr(755,root,root) %{_libdir}/libcrack.so.*.*
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/lib*.so
-%{_includedir}/*
+%attr(755,root,root) %{_libdir}/libcrack.so
+%{_libdir}/libcrack.la
+%{_includedir}/*.h
+
+%files static
+%defattr(644,root,root,755)
+%{_libdir}/libcrack.a
 
 %files dicts
 %defattr(644,root,root,755)
