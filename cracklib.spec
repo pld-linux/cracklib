@@ -12,7 +12,7 @@ Summary(tr):	Parola denetim kitaplЩПЩ
 Summary(uk):	Б╕бл╕отека перев╕рки парол╕в
 Name:		cracklib
 Version:	2.8.3
-Release:	0.1
+Release:	0.2
 License:	GPL v2
 Group:		Libraries
 Source0:	http://dl.sourceforge.net/cracklib/%{name}-%{version}.tar.gz
