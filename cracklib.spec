@@ -3,13 +3,13 @@
 %bcond_with	words	# bigger words database
 #
 Summary:	Password checking library
-Summary(es):	Biblioteca de chequeo de contraseЯas
-Summary(fr):	BibliothХque de vИrification de mots de passe
-Summary(pl):	Biblioteka sprawdzania haseЁ
-Summary(pt_BR):	Biblioteca de checagem de senhas
-Summary(ru):	Библиотека проверки паролей
-Summary(tr):	Parola denetim kitaplЩПЩ
-Summary(uk):	Б╕бл╕отека перев╕рки парол╕в
+Summary(es.UTF-8):   Biblioteca de chequeo de contraseц╠as
+Summary(fr.UTF-8):   Bibliothц╗que de vц╘rification de mots de passe
+Summary(pl.UTF-8):   Biblioteka sprawdzania haseе┌
+Summary(pt_BR.UTF-8):   Biblioteca de checagem de senhas
+Summary(ru.UTF-8):   п▒п╦п╠п╩п╦п╬я┌п╣п╨п╟ п©я─п╬п╡п╣я─п╨п╦ п©п╟я─п╬п╩п╣п╧
+Summary(tr.UTF-8):   Parola denetim kitaplд╠д÷д╠
+Summary(uk.UTF-8):   п▒я√п╠п╩я√п╬я┌п╣п╨п╟ п©п╣я─п╣п╡я√я─п╨п╦ п©п╟я─п╬п╩я√п╡
 Name:		cracklib
 Version:	2.8.3
 Release:	0.2
@@ -44,110 +44,110 @@ Install the cracklib package if you need a program to check users'
 passwords to see if they are at least minimally secure. If you install
 CrackLib, you'll also want to install the cracklib-dicts package.
 
-%description -l de
-эberprЭft PaъwЖrter auf Sicherheitsmerkmale - LДnge, Eindeutigkeit,
-Anwesenheit in einer WЖrter-Datenbank usw.
+%description -l de.UTF-8
+ц°berprц╪ft Paц÷wц╤rter auf Sicherheitsmerkmale - Lц╓nge, Eindeutigkeit,
+Anwesenheit in einer Wц╤rter-Datenbank usw.
 
-%description -l fr
-VИrifie les caractИristiques liИes Ю la sИcuritИ des mots de passe -
-longueur, unicitИ, s'ils sont dans une base de mots, etc.
+%description -l fr.UTF-8
+Vц╘rifie les caractц╘ristiques liц╘es ц═ la sц╘curitц╘ des mots de passe -
+longueur, unicitц╘, s'ils sont dans une base de mots, etc.
 
-%description -l pl
-CrackLib sprawdza hasЁa pod k╠tem bezpieczeЯstwa. Mo©na u©yФ tej
-biblioteki do powstrzymywania u©ytkownikСw przed wybieraniem haseЁ
-Ёatwych do odgadniЙcia. CrackLib przeprowadza nastЙpuj╠ce testy:
+%description -l pl.UTF-8
+CrackLib sprawdza hasе┌a pod kд┘tem bezpieczeе└stwa. Moе╪na uе╪yд┤ tej
+biblioteki do powstrzymywania uе╪ytkownikцЁw przed wybieraniem haseе┌
+е┌atwych do odgadniд≥cia. CrackLib przeprowadza nastд≥pujд┘ce testy:
 
-- prСbuje wygenerowaФ sЁowa z nazwy u©ytkownika i wpisu gecos, a
-  nastЙpnie porСwnuje je z hasЁem
-- szuka prostych wzorcСw w ha╤le
-- szuka hasЁa w sЁowniku
+- prцЁbuje wygenerowaд┤ sе┌owa z nazwy uе╪ytkownika i wpisu gecos, a
+  nastд≥pnie porцЁwnuje je z hasе┌em
+- szuka prostych wzorcцЁw w haе⌡le
+- szuka hasе┌a w sе┌owniku
 
-CrackLib to biblioteka zawieraj╠ca funkcjЙ C sЁu©╠c╠ do sprawdzania
-hasЁa oraz inne funkcje C. Nie jest to zamiennik programu passwd -
-musi byФ u©yty w poЁ╠czeniu z istniej╠cym programem passwd.
+CrackLib to biblioteka zawierajд┘ca funkcjд≥ C sе┌uе╪д┘cд┘ do sprawdzania
+hasе┌a oraz inne funkcje C. Nie jest to zamiennik programu passwd -
+musi byд┤ uе╪yty w poе┌д┘czeniu z istniejд┘cym programem passwd.
 
-%description -l pt_BR
-Inclui os dicionАrios cracklib para o padrЦo /usr/dict/words, assim
-como os utilitАrios necessАrios para criar dicionАrios.
+%description -l pt_BR.UTF-8
+Inclui os dicionц║rios cracklib para o padrцёo /usr/dict/words, assim
+como os utilitц║rios necessц║rios para criar dicionц║rios.
 
-%description -l ru
-CrackLib проверяет пароли на предмет соответствия некоторым критериям
-безопасности. Она может быть использована для предотвращения выбора
-пользователями легкоугадываемых паролей. CrackLib производит такие
-тесты:
+%description -l ru.UTF-8
+CrackLib п©я─п╬п╡п╣я─я▐п╣я┌ п©п╟я─п╬п╩п╦ п╫п╟ п©я─п╣п╢п╪п╣я┌ я│п╬п╬я┌п╡п╣я┌я│я┌п╡п╦я▐ п╫п╣п╨п╬я┌п╬я─я▀п╪ п╨я─п╦я┌п╣я─п╦я▐п╪
+п╠п╣п╥п╬п©п╟я│п╫п╬я│я┌п╦. п·п╫п╟ п╪п╬п╤п╣я┌ п╠я▀я┌я▄ п╦я│п©п╬п╩я▄п╥п╬п╡п╟п╫п╟ п╢п╩я▐ п©я─п╣п╢п╬я┌п╡я─п╟я┴п╣п╫п╦я▐ п╡я▀п╠п╬я─п╟
+п©п╬п╩я▄п╥п╬п╡п╟я┌п╣п╩я▐п╪п╦ п╩п╣пЁп╨п╬я┐пЁп╟п╢я▀п╡п╟п╣п╪я▀я┘ п©п╟я─п╬п╩п╣п╧. CrackLib п©я─п╬п╦п╥п╡п╬п╢п╦я┌ я┌п╟п╨п╦п╣
+я┌п╣я│я┌я▀:
 
-- Генерирует слова из имени пользователя и поля gecos и сравнивает их
-  с паролем;
-- Ищет в паролях простые шаблоны;
-- Проверяет пароль на наличие его в словаре.
+- п⌠п╣п╫п╣я─п╦я─я┐п╣я┌ я│п╩п╬п╡п╟ п╦п╥ п╦п╪п╣п╫п╦ п©п╬п╩я▄п╥п╬п╡п╟я┌п╣п╩я▐ п╦ п©п╬п╩я▐ gecos п╦ я│я─п╟п╡п╫п╦п╡п╟п╣я┌ п╦я┘
+  я│ п©п╟я─п╬п╩п╣п╪;
+- п≤я┴п╣я┌ п╡ п©п╟я─п╬п╩я▐я┘ п©я─п╬я│я┌я▀п╣ я┬п╟п╠п╩п╬п╫я▀;
+- п÷я─п╬п╡п╣я─я▐п╣я┌ п©п╟я─п╬п╩я▄ п╫п╟ п╫п╟п╩п╦я┤п╦п╣ п╣пЁп╬ п╡ я│п╩п╬п╡п╟я─п╣.
 
-CrackLib - это, собственно, библиотека, содержащая специфическую
-функцию C для угадывания паролей и некоторые другие функции. Это не
-замена программы passwd, ее надо использовать совместно с существующей
-программой passwd.
+CrackLib - я█я┌п╬, я│п╬п╠я│я┌п╡п╣п╫п╫п╬, п╠п╦п╠п╩п╦п╬я┌п╣п╨п╟, я│п╬п╢п╣я─п╤п╟я┴п╟я▐ я│п©п╣я├п╦я└п╦я┤п╣я│п╨я┐я▌
+я└я┐п╫п╨я├п╦я▌ C п╢п╩я▐ я┐пЁп╟п╢я▀п╡п╟п╫п╦я▐ п©п╟я─п╬п╩п╣п╧ п╦ п╫п╣п╨п╬я┌п╬я─я▀п╣ п╢я─я┐пЁп╦п╣ я└я┐п╫п╨я├п╦п╦. п╜я┌п╬ п╫п╣
+п╥п╟п╪п╣п╫п╟ п©я─п╬пЁя─п╟п╪п╪я▀ passwd, п╣п╣ п╫п╟п╢п╬ п╦я│п©п╬п╩я▄п╥п╬п╡п╟я┌я▄ я│п╬п╡п╪п╣я│я┌п╫п╬ я│ я│я┐я┴п╣я│я┌п╡я┐я▌я┴п╣п╧
+п©я─п╬пЁя─п╟п╪п╪п╬п╧ passwd.
 
-%description -l tr
-ParolalarЩn uzunluklarЩ, sistemde tek olmalarЩ, sЖzcЭk veri tabanЩnda
-bulunmamalarЩ gibi gЭvenlikle ilgili Жzelliklerini kontrol eder.
+%description -l tr.UTF-8
+Parolalarд╠n uzunluklarд╠, sistemde tek olmalarд╠, sц╤zcц╪k veri tabanд╠nda
+bulunmamalarд╠ gibi gц╪venlikle ilgili ц╤zelliklerini kontrol eder.
 
-%description -l uk
-CrackLib перев╕ря╓ парол╕ на в╕дпов╕дн╕сть деяким критер╕ям безпеки.
-Вона може бути використана для запоб╕гання вибору користувачами
-парол╕в, як╕ легко в╕дгадати. Вона викону╓ так╕ тести:
+%description -l uk.UTF-8
+CrackLib п©п╣я─п╣п╡я√я─я▐я■ п©п╟я─п╬п╩я√ п╫п╟ п╡я√п╢п©п╬п╡я√п╢п╫я√я│я┌я▄ п╢п╣я▐п╨п╦п╪ п╨я─п╦я┌п╣я─я√я▐п╪ п╠п╣п╥п©п╣п╨п╦.
+п▓п╬п╫п╟ п╪п╬п╤п╣ п╠я┐я┌п╦ п╡п╦п╨п╬я─п╦я│я┌п╟п╫п╟ п╢п╩я▐ п╥п╟п©п╬п╠я√пЁп╟п╫п╫я▐ п╡п╦п╠п╬я─я┐ п╨п╬я─п╦я│я┌я┐п╡п╟я┤п╟п╪п╦
+п©п╟я─п╬п╩я√п╡, я▐п╨я√ п╩п╣пЁп╨п╬ п╡я√п╢пЁп╟п╢п╟я┌п╦. п▓п╬п╫п╟ п╡п╦п╨п╬п╫я┐я■ я┌п╟п╨я√ я┌п╣я│я┌п╦:
 
-- Генеру╓ слова з ╕мен╕ користувача та поля gecos ╕ пор╕вню╓ ╖х з
-  паролем;
-- Шука╓ в паролях прост╕ шаблони;
-- Перев╕ря╓ парол╕ на наявн╕сть ╖х у словнику.
+- п⌠п╣п╫п╣я─я┐я■ я│п╩п╬п╡п╟ п╥ я√п╪п╣п╫я√ п╨п╬я─п╦я│я┌я┐п╡п╟я┤п╟ я┌п╟ п©п╬п╩я▐ gecos я√ п©п╬я─я√п╡п╫я▌я■ я≈я┘ п╥
+  п©п╟я─п╬п╩п╣п╪;
+- п╗я┐п╨п╟я■ п╡ п©п╟я─п╬п╩я▐я┘ п©я─п╬я│я┌я√ я┬п╟п╠п╩п╬п╫п╦;
+- п÷п╣я─п╣п╡я√я─я▐я■ п©п╟я─п╬п╩я√ п╫п╟ п╫п╟я▐п╡п╫я√я│я┌я▄ я≈я┘ я┐ я│п╩п╬п╡п╫п╦п╨я┐.
 
-CrackLib - це, власне, б╕бл╕отека, що м╕стить специф╕чну функц╕ю C для
-в╕дгадування парол╕в та деяк╕ ╕нш╕ функц╕╖. Це не зам╕на програми
-passwd, ╖╖ треба використовувати сп╕льно з ╕снуючою програмою passwd.
+CrackLib - я├п╣, п╡п╩п╟я│п╫п╣, п╠я√п╠п╩я√п╬я┌п╣п╨п╟, я┴п╬ п╪я√я│я┌п╦я┌я▄ я│п©п╣я├п╦я└я√я┤п╫я┐ я└я┐п╫п╨я├я√я▌ C п╢п╩я▐
+п╡я√п╢пЁп╟п╢я┐п╡п╟п╫п╫я▐ п©п╟я─п╬п╩я√п╡ я┌п╟ п╢п╣я▐п╨я√ я√п╫я┬я√ я└я┐п╫п╨я├я√я≈. п╕п╣ п╫п╣ п╥п╟п╪я√п╫п╟ п©я─п╬пЁя─п╟п╪п╦
+passwd, я≈я≈ я┌я─п╣п╠п╟ п╡п╦п╨п╬я─п╦я│я┌п╬п╡я┐п╡п╟я┌п╦ я│п©я√п╩я▄п╫п╬ п╥ я√я│п╫я┐я▌я┤п╬я▌ п©я─п╬пЁя─п╟п╪п╬я▌ passwd.
 
 %package devel
 Summary:	Header files and documentation for cracklib
-Summary(es):	Archivos de inclusiСn y bibliotecas para cracklib
-Summary(pl):	Pliki nagЁСwkowe i dokumentacja dla cracklib
-Summary(pt_BR):	Arquivos de inclusЦo e bibliotecas para a cracklib
+Summary(es.UTF-8):   Archivos de inclusiцЁn y bibliotecas para cracklib
+Summary(pl.UTF-8):   Pliki nagе┌цЁwkowe i dokumentacja dla cracklib
+Summary(pt_BR.UTF-8):   Arquivos de inclusцёo e bibliotecas para a cracklib
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
 %description devel
 Header files and documentation for cracklib.
 
-%description devel -l es
-Este paquete contiene los archivos de inclusiСn y bibliotecas que se
+%description devel -l es.UTF-8
+Este paquete contiene los archivos de inclusiцЁn y bibliotecas que se
 necesitan para desarrollar programas que usan cracklib.
 
-%description devel -l pl
-Pliki nagЁСwkowe i dokumentacja dla cracklib.
+%description devel -l pl.UTF-8
+Pliki nagе┌цЁwkowe i dokumentacja dla cracklib.
 
-%description devel -l pt_BR
-Este pacote contИm os arquivos de inclusЦo e bibliotecas que sЦo
-necessАrios para desenvolver programas que usam a cracklib.
+%description devel -l pt_BR.UTF-8
+Este pacote contц╘m os arquivos de inclusцёo e bibliotecas que sцёo
+necessц║rios para desenvolver programas que usam a cracklib.
 
 %package static
 Summary:	Static cracklib library
-Summary(pl):	Statyczna biblioteka cracklib
+Summary(pl.UTF-8):   Statyczna biblioteka cracklib
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Static cracklib library.
 
-%description static -l pl
+%description static -l pl.UTF-8
 Statyczna biblioteka cracklib.
 
 %package dicts
 Summary:	Standard dictionaries (/usr/share/dict/words)
-Summary(de):	Standard-WЖrterbЭcher (/usr/share/dict/words)
-Summary(es):	Diccionarios para chequeo de contraseЯas
-Summary(fr):	Dictionnaires standards (/usr/share/dict/words)
-Summary(pl):	Standardowe sЁowniki (/usr/share/dict/words)
-Summary(pt_BR):	DicionАrios para checagem de senhas
-Summary(ru):	Стандартные словари CrackLib
-Summary(tr):	Standart sЖzlЭkler (/usr/share/dict/words)
-Summary(uk):	Стандартн╕ словники CrackLib
+Summary(de.UTF-8):   Standard-Wц╤rterbц╪cher (/usr/share/dict/words)
+Summary(es.UTF-8):   Diccionarios para chequeo de contraseц╠as
+Summary(fr.UTF-8):   Dictionnaires standards (/usr/share/dict/words)
+Summary(pl.UTF-8):   Standardowe sе┌owniki (/usr/share/dict/words)
+Summary(pt_BR.UTF-8):   Dicionц║rios para checagem de senhas
+Summary(ru.UTF-8):   п║я┌п╟п╫п╢п╟я─я┌п╫я▀п╣ я│п╩п╬п╡п╟я─п╦ CrackLib
+Summary(tr.UTF-8):   Standart sц╤zlц╪kler (/usr/share/dict/words)
+Summary(uk.UTF-8):   п║я┌п╟п╫п╢п╟я─я┌п╫я√ я│п╩п╬п╡п╫п╦п╨п╦ CrackLib
 Group:		Applications/System
 
 %description dicts
@@ -156,43 +156,43 @@ CrackLib will need to use the dictionary appropriate to your system,
 which is normally put in /usr/share/dict/words. Cracklib-dicts also
 contains the utilities necessary for the creation of new dictionaries.
 
-%description dicts -l de
-EnthДlt die Cracklib-WЖrterbЭcher fЭr die
-Standard-/usr/share/dict/WЖrter sowie Utilities zum Erstellen neuer
-WЖrterbЭcher"
+%description dicts -l de.UTF-8
+Enthц╓lt die Cracklib-Wц╤rterbц╪cher fц╪r die
+Standard-/usr/share/dict/Wц╤rter sowie Utilities zum Erstellen neuer
+Wц╤rterbц╪cher"
 
-%description dicts -l es
-Incluye el diccionario cracklib para el padrСn /usr/share/dict/words,
-y utilitarios necesarios a creaciСn de nuevos diccionarios.
+%description dicts -l es.UTF-8
+Incluye el diccionario cracklib para el padrцЁn /usr/share/dict/words,
+y utilitarios necesarios a creaciцЁn de nuevos diccionarios.
 
-%description dicts -l fr
+%description dicts -l fr.UTF-8
 Contient les dictionnaires cracklib pour le /usr/share/dict/words
-standard, ainsi que les utilitaires nИcessaires Ю la crИation de
+standard, ainsi que les utilitaires nц╘cessaires ц═ la crц╘ation de
 nouveaux dictionnaires.
 
-%description dicts -l pl
-Pakiet zawiera sЁowniki cracklib'a dla standardowego
-/usr/share/dict/words oraz narzЙdzia do tworzenia nowych sЁownikСw.
+%description dicts -l pl.UTF-8
+Pakiet zawiera sе┌owniki cracklib'a dla standardowego
+/usr/share/dict/words oraz narzд≥dzia do tworzenia nowych sе┌ownikцЁw.
 
-%description dicts -l pt_BR
-Inclui o dicionАrio cracklib para o padrЦo /usr/dict/words, bem como
-utilitАrios necessАrios a criaГЦo de novos dicionАrios.
+%description dicts -l pt_BR.UTF-8
+Inclui o dicionц║rio cracklib para o padrцёo /usr/dict/words, bem como
+utilitц║rios necessц║rios a criaц╖цёo de novos dicionц║rios.
 
-%description dicts -l ru
-Пакет cracklib-dicts включает словари CrackLib. CrackLib будут нужны
-словари, соответствующие вашей системе, которые обычно находятся в
-/usr/share/dict/words. Cracklib-dicts также содержит утилиты,
-необходимые для создания новых словарей.
+%description dicts -l ru.UTF-8
+п÷п╟п╨п╣я┌ cracklib-dicts п╡п╨п╩я▌я┤п╟п╣я┌ я│п╩п╬п╡п╟я─п╦ CrackLib. CrackLib п╠я┐п╢я┐я┌ п╫я┐п╤п╫я▀
+я│п╩п╬п╡п╟я─п╦, я│п╬п╬я┌п╡п╣я┌я│я┌п╡я┐я▌я┴п╦п╣ п╡п╟я┬п╣п╧ я│п╦я│я┌п╣п╪п╣, п╨п╬я┌п╬я─я▀п╣ п╬п╠я▀я┤п╫п╬ п╫п╟я┘п╬п╢я▐я┌я│я▐ п╡
+/usr/share/dict/words. Cracklib-dicts я┌п╟п╨п╤п╣ я│п╬п╢п╣я─п╤п╦я┌ я┐я┌п╦п╩п╦я┌я▀,
+п╫п╣п╬п╠я┘п╬п╢п╦п╪я▀п╣ п╢п╩я▐ я│п╬п╥п╢п╟п╫п╦я▐ п╫п╬п╡я▀я┘ я│п╩п╬п╡п╟я─п╣п╧.
 
-%description dicts -l tr
-/usr/share/dict/words dosyasЩ iГin 'cracklib' kitaplЩklarЩnЩ ve yeni
-sЖzlЭkler yaratЩlmasЩ iГin gerekli yardЩmcЩ programlarЩ iГerir.
+%description dicts -l tr.UTF-8
+/usr/share/dict/words dosyasд╠ iц╖in 'cracklib' kitaplд╠klarд╠nд╠ ve yeni
+sц╤zlц╪kler yaratд╠lmasд╠ iц╖in gerekli yardд╠mcд╠ programlarд╠ iц╖erir.
 
-%description dicts -l uk
-Пакет cracklib-dicts м╕стить словники CrackLib. CrackLib будуть
-потр╕бн╕ словники, що в╕дпов╕дають ваш╕й систем╕, котр╕ зазвичай
-знаходяться в /usr/share/dict/words. Cracklib-dicts також м╕стить
-утил╕ти, необх╕дн╕ для створення нових словник╕в.
+%description dicts -l uk.UTF-8
+п÷п╟п╨п╣я┌ cracklib-dicts п╪я√я│я┌п╦я┌я▄ я│п╩п╬п╡п╫п╦п╨п╦ CrackLib. CrackLib п╠я┐п╢я┐я┌я▄
+п©п╬я┌я─я√п╠п╫я√ я│п╩п╬п╡п╫п╦п╨п╦, я┴п╬ п╡я√п╢п©п╬п╡я√п╢п╟я▌я┌я▄ п╡п╟я┬я√п╧ я│п╦я│я┌п╣п╪я√, п╨п╬я┌я─я√ п╥п╟п╥п╡п╦я┤п╟п╧
+п╥п╫п╟я┘п╬п╢я▐я┌я▄я│я▐ п╡ /usr/share/dict/words. Cracklib-dicts я┌п╟п╨п╬п╤ п╪я√я│я┌п╦я┌я▄
+я┐я┌п╦п╩я√я┌п╦, п╫п╣п╬п╠я┘я√п╢п╫я√ п╢п╩я▐ я│я┌п╡п╬я─п╣п╫п╫я▐ п╫п╬п╡п╦я┘ я│п╩п╬п╡п╫п╦п╨я√п╡.
 
 %prep
 %setup	-q
