@@ -3,13 +3,13 @@
 %bcond_with	words	# bigger words database
 #
 Summary:	Password checking library
-Summary(es.UTF-8):   Biblioteca de chequeo de contraseñas
-Summary(fr.UTF-8):   Bibliothèque de vérification de mots de passe
-Summary(pl.UTF-8):   Biblioteka sprawdzania haseł
-Summary(pt_BR.UTF-8):   Biblioteca de checagem de senhas
-Summary(ru.UTF-8):   Библиотека проверки паролей
-Summary(tr.UTF-8):   Parola denetim kitaplığı
-Summary(uk.UTF-8):   Бібліотека перевірки паролів
+Summary(es.UTF-8):	Biblioteca de chequeo de contraseñas
+Summary(fr.UTF-8):	Bibliothèque de vérification de mots de passe
+Summary(pl.UTF-8):	Biblioteka sprawdzania haseł
+Summary(pt_BR.UTF-8):	Biblioteca de checagem de senhas
+Summary(ru.UTF-8):	Библиотека проверки паролей
+Summary(tr.UTF-8):	Parola denetim kitaplığı
+Summary(uk.UTF-8):	Бібліотека перевірки паролів
 Name:		cracklib
 Version:	2.8.3
 Release:	0.2
@@ -106,9 +106,9 @@ passwd, її треба використовувати спільно з існ�
 
 %package devel
 Summary:	Header files and documentation for cracklib
-Summary(es.UTF-8):   Archivos de inclusión y bibliotecas para cracklib
-Summary(pl.UTF-8):   Pliki nagłówkowe i dokumentacja dla cracklib
-Summary(pt_BR.UTF-8):   Arquivos de inclusão e bibliotecas para a cracklib
+Summary(es.UTF-8):	Archivos de inclusión y bibliotecas para cracklib
+Summary(pl.UTF-8):	Pliki nagłówkowe i dokumentacja dla cracklib
+Summary(pt_BR.UTF-8):	Arquivos de inclusão e bibliotecas para a cracklib
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
@@ -128,7 +128,7 @@ necessários para desenvolver programas que usam a cracklib.
 
 %package static
 Summary:	Static cracklib library
-Summary(pl.UTF-8):   Statyczna biblioteka cracklib
+Summary(pl.UTF-8):	Statyczna biblioteka cracklib
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
@@ -140,14 +140,14 @@ Statyczna biblioteka cracklib.
 
 %package dicts
 Summary:	Standard dictionaries (/usr/share/dict/words)
-Summary(de.UTF-8):   Standard-Wörterbücher (/usr/share/dict/words)
-Summary(es.UTF-8):   Diccionarios para chequeo de contraseñas
-Summary(fr.UTF-8):   Dictionnaires standards (/usr/share/dict/words)
-Summary(pl.UTF-8):   Standardowe słowniki (/usr/share/dict/words)
-Summary(pt_BR.UTF-8):   Dicionários para checagem de senhas
-Summary(ru.UTF-8):   Стандартные словари CrackLib
-Summary(tr.UTF-8):   Standart sözlükler (/usr/share/dict/words)
-Summary(uk.UTF-8):   Стандартні словники CrackLib
+Summary(de.UTF-8):	Standard-Wörterbücher (/usr/share/dict/words)
+Summary(es.UTF-8):	Diccionarios para chequeo de contraseñas
+Summary(fr.UTF-8):	Dictionnaires standards (/usr/share/dict/words)
+Summary(pl.UTF-8):	Standardowe słowniki (/usr/share/dict/words)
+Summary(pt_BR.UTF-8):	Dicionários para checagem de senhas
+Summary(ru.UTF-8):	Стандартные словари CrackLib
+Summary(tr.UTF-8):	Standart sözlükler (/usr/share/dict/words)
+Summary(uk.UTF-8):	Стандартні словники CrackLib
 Group:		Applications/System
 
 %description dicts
