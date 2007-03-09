@@ -17,7 +17,7 @@ License:	GPL v2
 Group:		Libraries
 Source0:	http://dl.sourceforge.net/cracklib/%{name}-%{version}.tar.gz
 # Source0-md5:	13f82f75b892cbd0ba7cb9069e307006
-Source1:	http://dl.sourceforge.net/cracklib/cracklib-words.gz
+Source1:	http://dl.sourceforge.net/cracklib/%{name}-words.gz
 # Source1-md5:	d18e670e5df560a8745e1b4dede8f84f
 URL:		http://sourceforge.net/projects/cracklib/
 Patch0:		%{name}-pld.patch
@@ -197,7 +197,7 @@ sözlükler yaratılması için gerekli yardımcı programları içerir.
 %prep
 %setup	-q
 %patch0 -p0
-%if %{with words} 
+%if %{with words}
 install %{SOURCE1} dicts/
 %endif
 
