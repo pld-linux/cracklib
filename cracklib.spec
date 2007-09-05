@@ -1,6 +1,5 @@
-#
-# TODO:
-#	- python module
+# TODO: is $(pkgdatadir)/cracklib.magic used for anything?
+#       it's already in file database, so maybe just drop it?
 #
 # Conditional build:
 %bcond_with	words	# bigger words database
@@ -23,6 +22,7 @@ Source0:	http://dl.sourceforge.net/cracklib/%{name}-%{version}.tar.gz
 Source1:	http://dl.sourceforge.net/cracklib/%{name}-words.gz
 # Source1-md5:	d18e670e5df560a8745e1b4dede8f84f
 URL:		http://sourceforge.net/projects/cracklib/
+BuildRequires:	python-devel
 BuildRequires:	words
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -173,7 +173,7 @@ standard, ainsi que les utilitaires nécessaires à la création de
 nouveaux dictionnaires.
 
 %description dicts -l pl.UTF-8
-Pakiet zawiera słowniki cracklib'a dla standardowego
+Pakiet zawiera słowniki crackliba dla standardowego
 /usr/share/dict/words oraz narzędzia do tworzenia nowych słowników.
 
 %description dicts -l pt_BR.UTF-8
@@ -196,6 +196,19 @@ sözlükler yaratılması için gerekli yardımcı programları içerir.
 знаходяться в /usr/share/dict/words. Cracklib-dicts також містить
 утиліти, необхідні для створення нових словників.
 
+%package -n python-cracklib
+Summary:	Python binding for cracklib
+Summary(pl.UTF-8):	Wiązanie Pythona do crackliba
+Group:		Libraries/Python
+Requires:	%{name} = %{version}-%{release}
+%pyrequires_eq	python-libs
+
+%description -n python-cracklib
+Python binding for cracklib.
+
+%description -n python-cracklib -l pl.UTF-8
+Wiązanie Pythona do crackliba.
+
 %prep
 %setup	-q
 %if %{with words}
@@ -216,9 +229,11 @@ install -d $RPM_BUILD_ROOT{%{_sbindir},%{_libdir},%{_includedir},%{_datadir}/dic
 
 util/cracklib-format dicts/cracklib* | util/cracklib-packer $RPM_BUILD_ROOT%{_datadir}/dict/cracklib_dict
 
-%{find_lang} %{name}
+rm -f $RPM_BUILD_ROOT%{py_sitedir}/*.{la,a}
 
-sed -i -e 's/.*sl_SI.*//' %{name}.lang
+mv -f $RPM_BUILD_ROOT%{_datadir}/locale/{sl_SI,sl}
+
+%find_lang %{name}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -247,3 +262,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_sbindir}/*
 %{_datadir}/dict/cracklib_dict*
+
+%files -n python-cracklib
+%defattr(644,root,root,755)
+%attr(755,root,root) %{py_sitedir}/cracklibmodule.so
