@@ -1,4 +1,7 @@
 #
+# TODO:
+#	- python module
+#
 # Conditional build:
 %bcond_with	words	# bigger words database
 #
@@ -11,16 +14,15 @@ Summary(ru.UTF-8):	Библиотека проверки паролей
 Summary(tr.UTF-8):	Parola denetim kitaplığı
 Summary(uk.UTF-8):	Бібліотека перевірки паролів
 Name:		cracklib
-Version:	2.8.3
-Release:	0.2
+Version:	2.8.10
+Release:	1
 License:	GPL v2
 Group:		Libraries
 Source0:	http://dl.sourceforge.net/cracklib/%{name}-%{version}.tar.gz
-# Source0-md5:	13f82f75b892cbd0ba7cb9069e307006
+# Source0-md5:	555f7832b63ebc7fb70b0373500c2358
 Source1:	http://dl.sourceforge.net/cracklib/%{name}-words.gz
 # Source1-md5:	d18e670e5df560a8745e1b4dede8f84f
 URL:		http://sourceforge.net/projects/cracklib/
-Patch0:		%{name}-pld.patch
 BuildRequires:	words
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -196,13 +198,13 @@ sözlükler yaratılması için gerekli yardımcı programları içerir.
 
 %prep
 %setup	-q
-%patch0 -p0
 %if %{with words}
 install %{SOURCE1} dicts/
 %endif
 
 %build
-%configure
+%configure \
+	--with-default-dict=%{_datadir}/dict/cracklib_dict
 %{__make}
 
 %install
@@ -214,16 +216,20 @@ install -d $RPM_BUILD_ROOT{%{_sbindir},%{_libdir},%{_includedir},%{_datadir}/dic
 
 util/cracklib-format dicts/cracklib* | util/cracklib-packer $RPM_BUILD_ROOT%{_datadir}/dict/cracklib_dict
 
+%{find_lang} %{name}
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %post	-p /sbin/ldconfig
 %postun -p /sbin/ldconfig
 
-%files
+%files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc ChangeLog NEWS README
 %attr(755,root,root) %{_libdir}/libcrack.so.*.*
+%dir %{_datadir}/%{name}
+%{_datadir}/%{name}/*
 
 %files devel
 %defattr(644,root,root,755)
