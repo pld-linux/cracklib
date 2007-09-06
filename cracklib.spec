@@ -14,7 +14,7 @@ Summary(tr.UTF-8):	Parola denetim kitaplığı
 Summary(uk.UTF-8):	Бібліотека перевірки паролів
 Name:		cracklib
 Version:	2.8.10
-Release:	2
+Release:	3
 License:	GPL v2
 Group:		Libraries
 Source0:	http://dl.sourceforge.net/cracklib/%{name}-%{version}.tar.gz
@@ -227,6 +227,7 @@ install -d $RPM_BUILD_ROOT{%{_sbindir},%{_libdir},%{_includedir},%{_datadir}/dic
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+chmod 755 util/cracklib-format
 util/cracklib-format dicts/cracklib* | util/cracklib-packer $RPM_BUILD_ROOT%{_datadir}/dict/cracklib_dict
 
 rm -f $RPM_BUILD_ROOT%{py_sitedir}/*.{la,a}
