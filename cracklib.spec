@@ -245,15 +245,16 @@ rm -rf $RPM_BUILD_ROOT
 %files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc ChangeLog NEWS README
-%attr(755,root,root) %{_libdir}/libcrack.so.*.*
-%dir %{_datadir}/%{name}
-%{_datadir}/%{name}/*
+%attr(755,root,root) %{_libdir}/libcrack.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libcrack.so.2
+%{_datadir}/%{name}
 
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libcrack.so
 %{_libdir}/libcrack.la
-%{_includedir}/*.h
+%{_includedir}/crack.h
+%{_includedir}/packer.h
 
 %files static
 %defattr(644,root,root,755)
@@ -261,8 +262,9 @@ rm -rf $RPM_BUILD_ROOT
 
 %files dicts
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_sbindir}/*
-%{_datadir}/dict/cracklib_dict*
+%attr(755,root,root) %{_sbindir}/cracklib-*
+%attr(755,root,root) %{_sbindir}/create-cracklib-dict
+%{_datadir}/dict/cracklib_dict.*
 
 %files -n python-cracklib
 %defattr(644,root,root,755)
