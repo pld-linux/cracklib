@@ -14,13 +14,14 @@ Summary(tr.UTF-8):	Parola denetim kitaplığı
 Summary(uk.UTF-8):	Бібліотека перевірки паролів
 Name:		cracklib
 Version:	2.8.13
-Release:	2
+%define	words_v	20080507
+Release:	3
 License:	GPL v2
 Group:		Libraries
-Source0:	http://dl.sourceforge.net/cracklib/%{name}-%{version}.tar.gz
+Source0:	http://downloads.sourceforge.net/cracklib/%{name}-%{version}.tar.gz
 # Source0-md5:	5beb4c6b3c31c83fc98c4c225b25cd94
-Source1:	http://dl.sourceforge.net/cracklib/%{name}-words.gz
-# Source1-md5:	d18e670e5df560a8745e1b4dede8f84f
+Source1:	http://downloads.sourceforge.net/cracklib/%{name}-words-%{words_v}.gz
+# Source1-md5:	7fa6ba0cd50e7f9ccaf4707c810b14f1
 URL:		http://sourceforge.net/projects/cracklib/
 BuildRequires:	python-devel
 BuildRequires:	words
