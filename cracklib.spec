@@ -24,8 +24,12 @@ Source1:	http://downloads.sourceforge.net/cracklib/%{name}-words-%{words_v}.gz
 # Source1-md5:	7fa6ba0cd50e7f9ccaf4707c810b14f1
 URL:		http://sourceforge.net/projects/cracklib/
 BuildRequires:	python-devel
+BuildRequires:	python-modules
+BuildRequires:	rpm-pythonprov
 BuildRequires:	words
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+%undefine	__cxx
 
 %description
 CrackLib tests passwords to determine whether they match certain
