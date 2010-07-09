@@ -15,7 +15,7 @@ Summary(uk.UTF-8):	Бібліотека перевірки паролів
 Name:		cracklib
 Version:	2.8.15
 %define	words_v	20080507
-Release:	1
+Release:	2
 License:	GPL v2
 Group:		Libraries
 Source0:	http://downloads.sourceforge.net/cracklib/%{name}-%{version}.tar.gz
