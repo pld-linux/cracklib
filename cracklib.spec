@@ -13,13 +13,13 @@ Summary(ru.UTF-8):	Библиотека проверки паролей
 Summary(tr.UTF-8):	Parola denetim kitaplığı
 Summary(uk.UTF-8):	Бібліотека перевірки паролів
 Name:		cracklib
-Version:	2.8.16
+Version:	2.8.18
 %define	words_v	20080507
 Release:	1
 License:	GPL v2
 Group:		Libraries
 Source0:	http://downloads.sourceforge.net/cracklib/%{name}-%{version}.tar.gz
-# Source0-md5:	3bfb22db8fcffd019463ee415a1b25b7
+# Source0-md5:	79053ad8bc714a44cd660cb12116211b
 Source1:	http://downloads.sourceforge.net/cracklib/%{name}-words-%{words_v}.gz
 # Source1-md5:	7fa6ba0cd50e7f9ccaf4707c810b14f1
 URL:		http://sourceforge.net/projects/cracklib/
