@@ -1,9 +1,8 @@
-# TODO: is $(pkgdatadir)/cracklib.magic used for anything?
-#       it's already in file database, so maybe just drop it?
 #
 # Conditional build:
 %bcond_with	words	# bigger words database
-#
+
+%define	words_v	20080507
 Summary:	Password checking library
 Summary(es.UTF-8):	Biblioteca de chequeo de contraseñas
 Summary(fr.UTF-8):	Bibliothèque de vérification de mots de passe
@@ -14,7 +13,6 @@ Summary(tr.UTF-8):	Parola denetim kitaplığı
 Summary(uk.UTF-8):	Бібліотека перевірки паролів
 Name:		cracklib
 Version:	2.8.18
-%define	words_v	20080507
 Release:	1
 License:	GPL v2
 Group:		Libraries
@@ -235,9 +233,12 @@ install -d $RPM_BUILD_ROOT{%{_sbindir},%{_libdir},%{_includedir},%{_datadir}/dic
 chmod 755 util/cracklib-format
 util/cracklib-format dicts/cracklib* | util/cracklib-packer $RPM_BUILD_ROOT%{_datadir}/dict/cracklib_dict
 
-rm -f $RPM_BUILD_ROOT%{py_sitedir}/*.{la,a}
+%{__rm} $RPM_BUILD_ROOT%{py_sitedir}/*.{la,a}
 
-mv -f $RPM_BUILD_ROOT%{_datadir}/locale/{sl_SI,sl}
+# already in file(1) database
+%{__rm} $RPM_BUILD_ROOT%{_datadir}/%{name}/cracklib.magic
+
+mv -f $RPM_BUILD_ROOT%{_localedir}/{sl_SI,sl}
 
 %find_lang %{name}
 
@@ -274,4 +275,4 @@ rm -rf $RPM_BUILD_ROOT
 %files -n python-cracklib
 %defattr(644,root,root,755)
 %attr(755,root,root) %{py_sitedir}/_cracklibmodule.so
-%{python_sitelib}/%{name}.*
+%{py_sitescriptdir}/%{name}.*
