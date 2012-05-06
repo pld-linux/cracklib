@@ -8,11 +8,13 @@ Summary(tr.UTF-8):	Parola denetim kitaplığı
 Summary(uk.UTF-8):	Бібліотека перевірки паролів
 Name:		cracklib
 Version:	2.8.18
-Release:	2
+Release:	3
 License:	GPL v2
 Group:		Libraries
 Source0:	http://downloads.sourceforge.net/cracklib/%{name}-%{version}.tar.gz
 # Source0-md5:	79053ad8bc714a44cd660cb12116211b
+Source1:	ftp://ftp.debian.org/debian/pool/main/c/cracklib2/%{name}2_%{version}-4.debian.tar.gz
+# Source1-md5:	5de4e3698c9cb40da746b492479efad9
 URL:		http://sourceforge.net/projects/cracklib/
 BuildRequires:	python-devel
 BuildRequires:	python-modules
@@ -150,7 +152,7 @@ Python binding for cracklib.
 Wiązanie Pythona do crackliba.
 
 %prep
-%setup	-q
+%setup -q -a1
 
 %build
 %configure \
@@ -162,6 +164,12 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_sbindir},%{_libdir},%{_includedir},%{_datadir}/dict}
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
+
+install -d $RPM_BUILD_ROOT%{_mandir}/man{3,8}
+cp -p debian/*.3 $RPM_BUILD_ROOT%{_mandir}/man3
+cp -p debian/*.8 $RPM_BUILD_ROOT%{_mandir}/man8
+# debian specific
+rm $RPM_BUILD_ROOT%{_mandir}/man8/update-cracklib.8*
 
 chmod 755 util/cracklib-format
 
@@ -196,6 +204,10 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_sbindir}/cracklib-*
 %attr(755,root,root) %{_sbindir}/create-cracklib-dict
 %attr(755,root,root) %{_libdir}/libcrack.so
+%{_mandir}/man3/FascistCheck.3*
+%{_mandir}/man8/cracklib-check.8*
+%{_mandir}/man8/cracklib-format.8*
+%{_mandir}/man8/create-cracklib-dict.8*
 %{_libdir}/libcrack.la
 %{_includedir}/crack.h
 %{_includedir}/packer.h
