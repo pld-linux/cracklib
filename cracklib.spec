@@ -233,6 +233,10 @@ install -d $RPM_BUILD_ROOT{%{_sbindir},%{_libdir},%{_includedir},%{_datadir}/dic
 chmod 755 util/cracklib-format
 util/cracklib-format dicts/cracklib* | util/cracklib-packer $RPM_BUILD_ROOT%{_datadir}/dict/cracklib_dict
 
+util/cracklib-format $RPM_BUILD_ROOT%{_datadir}/%{name}/cracklib-small | \
+util/cracklib-packer $RPM_BUILD_ROOT%{_datadir}/dict/cracklib-small
+rm -f $RPM_BUILD_ROOT%{_datadir}/%{name}/cracklib-small
+
 %{__rm} $RPM_BUILD_ROOT%{py_sitedir}/*.{la,a}
 
 # already in file(1) database
@@ -253,7 +257,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc ChangeLog NEWS README
 %attr(755,root,root) %{_libdir}/libcrack.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libcrack.so.2
-%{_datadir}/%{name}
+%{_datadir}/dict/cracklib-small.*
 
 %files devel
 %defattr(644,root,root,755)
