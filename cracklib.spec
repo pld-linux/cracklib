@@ -7,14 +7,14 @@ Summary(ru.UTF-8):	Библиотека проверки паролей
 Summary(tr.UTF-8):	Parola denetim kitaplığı
 Summary(uk.UTF-8):	Бібліотека перевірки паролів
 Name:		cracklib
-Version:	2.8.19
+Version:	2.8.22
 Release:	1
 License:	GPL v2
 Group:		Libraries
 Source0:	http://downloads.sourceforge.net/cracklib/%{name}-%{version}.tar.gz
-# Source0-md5:	ca0ec168d9c6466612204e8dfb2df8a9
+# Source0-md5:	463177b5c29c7a598c991e12a4898e06
 Source1:	ftp://ftp.debian.org/debian/pool/main/c/cracklib2/%{name}2_%{version}-1.debian.tar.gz
-# Source1-md5:	12936e97cc34a28f2efec62e115a60e1
+# Source1-md5:	106176eee3183d2320442531c0e62da2
 URL:		http://sourceforge.net/projects/cracklib/
 BuildRequires:	python-devel
 BuildRequires:	python-modules
@@ -218,5 +218,5 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n python-cracklib
 %defattr(644,root,root,755)
-%attr(755,root,root) %{py_sitedir}/_cracklibmodule.so
+%attr(755,root,root) %{py_sitedir}/_cracklib.so
 %{py_sitescriptdir}/%{name}.*
