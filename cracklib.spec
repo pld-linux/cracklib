@@ -7,18 +7,20 @@ Summary(ru.UTF-8):	Библиотека проверки паролей
 Summary(tr.UTF-8):	Parola denetim kitaplığı
 Summary(uk.UTF-8):	Бібліотека перевірки паролів
 Name:		cracklib
-Version:	2.8.22
+Version:	2.9.0
 Release:	1
 License:	GPL v2
 Group:		Libraries
 Source0:	http://downloads.sourceforge.net/cracklib/%{name}-%{version}.tar.gz
-# Source0-md5:	463177b5c29c7a598c991e12a4898e06
-Source1:	ftp://ftp.debian.org/debian/pool/main/c/cracklib2/%{name}2_%{version}-1.debian.tar.gz
+# Source0-md5:	e0f94ac2138fd33c7e77b19c1e9a9390
+# for manuals (note: update when available)
+Source1:	ftp://ftp.debian.org/debian/pool/main/c/cracklib2/%{name}2_2.8.22-1.debian.tar.gz
 # Source1-md5:	106176eee3183d2320442531c0e62da2
 URL:		http://sourceforge.net/projects/cracklib/
 BuildRequires:	python-devel
 BuildRequires:	python-modules
 BuildRequires:	rpm-pythonprov
+BuildRequires:	rpmbuild(macros) >= 1.219
 BuildRequires:	words
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -169,15 +171,17 @@ install -d $RPM_BUILD_ROOT%{_mandir}/man{3,8}
 cp -p debian/*.3 $RPM_BUILD_ROOT%{_mandir}/man3
 cp -p debian/*.8 $RPM_BUILD_ROOT%{_mandir}/man8
 # debian specific
-rm $RPM_BUILD_ROOT%{_mandir}/man8/update-cracklib.8*
+%{__rm} $RPM_BUILD_ROOT%{_mandir}/man8/update-cracklib.8*
 
 chmod 755 util/cracklib-format
 
 util/cracklib-format $RPM_BUILD_ROOT%{_datadir}/%{name}/cracklib-small | \
 util/cracklib-packer $RPM_BUILD_ROOT%{_datadir}/dict/cracklib-small
-rm -f $RPM_BUILD_ROOT%{_datadir}/%{name}/cracklib-small
+%{__rm} $RPM_BUILD_ROOT%{_datadir}/%{name}/cracklib-small
 
 %{__rm} $RPM_BUILD_ROOT%{py_sitedir}/*.{la,a}
+%{__rm} $RPM_BUILD_ROOT%{py_sitescriptdir}/test_cracklib.py*
+%py_postclean
 
 # already in file(1) database
 %{__rm} $RPM_BUILD_ROOT%{_datadir}/%{name}/cracklib.magic
@@ -219,4 +223,4 @@ rm -rf $RPM_BUILD_ROOT
 %files -n python-cracklib
 %defattr(644,root,root,755)
 %attr(755,root,root) %{py_sitedir}/_cracklib.so
-%{py_sitescriptdir}/%{name}.*
+%{py_sitescriptdir}/cracklib.py[co]
