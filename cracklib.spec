@@ -7,21 +7,26 @@ Summary(ru.UTF-8):	Библиотека проверки паролей
 Summary(tr.UTF-8):	Parola denetim kitaplığı
 Summary(uk.UTF-8):	Бібліотека перевірки паролів
 Name:		cracklib
-Version:	2.9.0
-Release:	2
-License:	GPL v2
+Version:	2.9.6
+Release:	1
+License:	LGPL v2.1+
 Group:		Libraries
-Source0:	http://downloads.sourceforge.net/cracklib/%{name}-%{version}.tar.gz
-# Source0-md5:	e0f94ac2138fd33c7e77b19c1e9a9390
+#Source0Download: https://github.com/cracklib/cracklib/releases
+Source0:	https://github.com/cracklib/cracklib/releases/download/%{name}-%{version}/%{name}-%{version}.tar.gz
+# Source0-md5:	c52f463585d85924b28cdc1e373ae06d
 # for manuals (note: update when available)
-Source1:	ftp://ftp.debian.org/debian/pool/main/c/cracklib2/%{name}2_2.8.22-1.debian.tar.gz
-# Source1-md5:	106176eee3183d2320442531c0e62da2
-URL:		http://sourceforge.net/projects/cracklib/
+Source1:	ftp://ftp.debian.org/debian/pool/main/c/cracklib2/%{name}2_2.9.2-1.debian.tar.xz
+# Source1-md5:	4bd9ee74f1d6dc2328abfd9e937ed821
+URL:		https://github.com/cracklib/cracklib
+BuildRequires:	gettext-tools >= 0.17
 BuildRequires:	python-devel
 BuildRequires:	python-modules
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.219
+BuildRequires:	tar >= 1:1.22
 BuildRequires:	words
+BuildRequires:	xz
+BuildRequires:	zlib-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %undefine	__cxx
@@ -186,7 +191,7 @@ util/cracklib-packer $RPM_BUILD_ROOT%{_datadir}/dict/cracklib-small
 # already in file(1) database
 %{__rm} $RPM_BUILD_ROOT%{_datadir}/%{name}/cracklib.magic
 
-mv -f $RPM_BUILD_ROOT%{_localedir}/{sl_SI,sl}
+%{__mv} $RPM_BUILD_ROOT%{_localedir}/{sl_SI,sl}
 
 %find_lang %{name}
 
@@ -198,7 +203,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc ChangeLog NEWS README
+%doc AUTHORS NEWS README README-DAWG README-LICENSE README-WORDS
 %attr(755,root,root) %{_libdir}/libcrack.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libcrack.so.2
 %{_datadir}/dict/cracklib-small.*
