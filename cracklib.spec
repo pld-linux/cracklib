@@ -1,3 +1,6 @@
+%bcond_without	python2	# Don't build python 2 bindings
+%bcond_without	python3	# Don't build python 3 bindings
+
 Summary:	Password checking library
 Summary(es.UTF-8):	Biblioteca de chequeo de contraseñas
 Summary(fr.UTF-8):	Bibliothèque de vérification de mots de passe
@@ -8,7 +11,7 @@ Summary(tr.UTF-8):	Parola denetim kitaplığı
 Summary(uk.UTF-8):	Бібліотека перевірки паролів
 Name:		cracklib
 Version:	2.9.7
-Release:	1
+Release:	2
 License:	LGPL v2.1+
 Group:		Libraries
 #Source0Download: https://github.com/cracklib/cracklib/releases
@@ -19,8 +22,10 @@ Source1:	http://ftp.debian.org/debian/pool/main/c/cracklib2/%{name}2_2.9.6-2.deb
 # Source1-md5:	6af239dbba1fa8ce3ecc0724babe5078
 URL:		https://github.com/cracklib/cracklib
 BuildRequires:	gettext-tools >= 0.17
-BuildRequires:	python-devel
-BuildRequires:	python-modules
+%{?with_python2:BuildRequires:	python-devel}
+%{?with_python2:BuildRequires:	python-modules}
+%{?with_python3:BuildRequires:	python3-devel}
+%{?with_python3:BuildRequires:	python3-modules}
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.219
 BuildRequires:	tar >= 1:1.22
@@ -158,6 +163,19 @@ Python binding for cracklib.
 %description -n python-cracklib -l pl.UTF-8
 Wiązanie Pythona do crackliba.
 
+%package -n python3-cracklib
+Summary:	Python binding for cracklib
+Summary(pl.UTF-8):	Wiązanie Pythona do crackliba
+Group:		Libraries/Python
+Requires:	%{name} = %{version}-%{release}
+%pyrequires_eq	python-libs
+
+%description -n python3-cracklib
+Python binding for cracklib.
+
+%description -n python3-cracklib -l pl.UTF-8
+Wiązanie Pythona do crackliba.
+
 %prep
 %setup -q -a1
 
@@ -184,9 +202,17 @@ util/cracklib-format $RPM_BUILD_ROOT%{_datadir}/%{name}/cracklib-small | \
 util/cracklib-packer $RPM_BUILD_ROOT%{_datadir}/dict/cracklib-small
 %{__rm} $RPM_BUILD_ROOT%{_datadir}/%{name}/cracklib-small
 
+%if %{with python2}
 %{__rm} $RPM_BUILD_ROOT%{py_sitedir}/*.{la,a}
 %{__rm} $RPM_BUILD_ROOT%{py_sitescriptdir}/test_cracklib.py*
 %py_postclean
+%endif
+
+%if %{with python3}
+%{__rm} $RPM_BUILD_ROOT%{py3_sitedir}/*.{la,a}
+%{__rm} $RPM_BUILD_ROOT%{py3_sitedir}/test_cracklib.py*
+%{__rm} $RPM_BUILD_ROOT%{py3_sitedir}/__pycache__/test_cracklib.*.py*
+%endif
 
 # already in file(1) database
 %{__rm} $RPM_BUILD_ROOT%{_datadir}/%{name}/cracklib.magic
@@ -223,7 +249,17 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{_libdir}/libcrack.a
 
+%if %{with python2}
 %files -n python-cracklib
 %defattr(644,root,root,755)
 %attr(755,root,root) %{py_sitedir}/_cracklib.so
 %{py_sitescriptdir}/cracklib.py[co]
+%endif
+
+%if %{with python3}
+%files -n python3-cracklib
+%defattr(644,root,root,755)
+%attr(755,root,root) %{py3_sitedir}/_cracklib.so
+%{py3_sitedir}/cracklib.py
+%{py3_sitedir}/__pycache__/cracklib.*.py[co]
+%endif
