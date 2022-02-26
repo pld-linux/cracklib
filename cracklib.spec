@@ -1,5 +1,9 @@
-%bcond_without	python2	# Don't build python 2 bindings
+%bcond_with	python2	# Don't build python 2 bindings
 %bcond_without	python3	# Don't build python 3 bindings
+
+%if %{with python3}
+%undefine with_python2
+%endif
 
 Summary:	Password checking library
 Summary(es.UTF-8):	Biblioteca de chequeo de contraseñas
@@ -20,6 +24,7 @@ Source0:	https://github.com/cracklib/cracklib/releases/download/v%{version}/%{na
 # for manuals (note: update when available)
 Source1:	http://ftp.debian.org/debian/pool/main/c/cracklib2/%{name}2_2.9.6-2.debian.tar.xz
 # Source1-md5:	6af239dbba1fa8ce3ecc0724babe5078
+Patch0:		%{name}-python3.patch
 URL:		https://github.com/cracklib/cracklib
 BuildRequires:	gettext-tools >= 0.17
 %{?with_python2:BuildRequires:	python-devel}
@@ -178,8 +183,13 @@ Wiązanie Pythona do crackliba.
 
 %prep
 %setup -q -a1
+%{?with_python3:%patch0 -p1}
 
 %build
+%{__aclocal}
+%{__autoconf}
+%{__autoheader}
+%{__automake}
 %configure \
 	--with-default-dict=%{_datadir}/dict/cracklib_dict
 %{__make}
@@ -210,8 +220,8 @@ util/cracklib-packer $RPM_BUILD_ROOT%{_datadir}/dict/cracklib-small
 
 %if %{with python3}
 %{__rm} $RPM_BUILD_ROOT%{py3_sitedir}/*.{la,a}
-%{__rm} $RPM_BUILD_ROOT%{py3_sitedir}/test_cracklib.py*
-%{__rm} $RPM_BUILD_ROOT%{py3_sitedir}/__pycache__/test_cracklib.*.py*
+%{__rm} $RPM_BUILD_ROOT%{py3_sitescriptdir}/test_cracklib.py*
+%{__rm} $RPM_BUILD_ROOT%{py3_sitescriptdir}/__pycache__/test_cracklib.*.py*
 %endif
 
 # already in file(1) database
@@ -260,6 +270,6 @@ rm -rf $RPM_BUILD_ROOT
 %files -n python3-cracklib
 %defattr(644,root,root,755)
 %attr(755,root,root) %{py3_sitedir}/_cracklib.so
-%{py3_sitedir}/cracklib.py
-%{py3_sitedir}/__pycache__/cracklib.*.py[co]
+%{py3_sitescriptdir}/cracklib.py
+%{py3_sitescriptdir}/__pycache__/cracklib.*.py[co]
 %endif

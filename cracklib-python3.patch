@@ -1,0 +1,19 @@
+diff -u cracklib-2.9.7.orig/configure.ac cracklib-2.9.7/configure.ac
+--- cracklib-2.9.7.orig/configure.ac	2019-03-03 17:49:19.000000000 +0000
++++ cracklib-2.9.7/configure.ac	2022-02-26 23:30:53.361504964 +0000
+@@ -72,7 +72,7 @@
+ AC_HELP_STRING(--without-python,[Build a python module @<:@default=auto@:>@]),
+ build_python=$withval,build_python=auto)
+ if test "$build_python" != no ; then
+-   AM_PATH_PYTHON(,,
++   AM_PATH_PYTHON([3],,
+                   [if test "$build_python" != yes ; then
+                       AC_MSG_WARN([python was not found, continuing])
+                       build_python=no
+Common subdirectories: cracklib-2.9.7.orig/dicts and cracklib-2.9.7/dicts
+Common subdirectories: cracklib-2.9.7.orig/doc and cracklib-2.9.7/doc
+Common subdirectories: cracklib-2.9.7.orig/lib and cracklib-2.9.7/lib
+Common subdirectories: cracklib-2.9.7.orig/m4 and cracklib-2.9.7/m4
+Common subdirectories: cracklib-2.9.7.orig/po and cracklib-2.9.7/po
+Common subdirectories: cracklib-2.9.7.orig/python and cracklib-2.9.7/python
+Common subdirectories: cracklib-2.9.7.orig/util and cracklib-2.9.7/util
