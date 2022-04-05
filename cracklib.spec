@@ -15,7 +15,7 @@ Summary(tr.UTF-8):	Parola denetim kitaplığı
 Summary(uk.UTF-8):	Бібліотека перевірки паролів
 Name:		cracklib
 Version:	2.9.7
-Release:	4
+Release:	5
 License:	LGPL v2.1+
 Group:		Libraries
 #Source0Download: https://github.com/cracklib/cracklib/releases
@@ -173,7 +173,7 @@ Summary:	Python binding for cracklib
 Summary(pl.UTF-8):	Wiązanie Pythona do crackliba
 Group:		Libraries/Python
 Requires:	%{name} = %{version}-%{release}
-%pyrequires_eq	python-libs
+%pyrequires_eq	python3-libs
 
 %description -n python3-cracklib
 Python binding for cracklib.
