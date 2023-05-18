@@ -14,16 +14,16 @@ Summary(ru.UTF-8):	Библиотека проверки паролей
 Summary(tr.UTF-8):	Parola denetim kitaplığı
 Summary(uk.UTF-8):	Бібліотека перевірки паролів
 Name:		cracklib
-Version:	2.9.7
-Release:	5
+Version:	2.9.11
+Release:	1
 License:	LGPL v2.1+
 Group:		Libraries
 #Source0Download: https://github.com/cracklib/cracklib/releases
-Source0:	https://github.com/cracklib/cracklib/releases/download/v%{version}/%{name}-%{version}.tar.bz2
-# Source0-md5:	0d68de25332cee5660850528a385427f
-# for manuals (note: update when available)
-Source1:	http://ftp.debian.org/debian/pool/main/c/cracklib2/%{name}2_2.9.6-2.debian.tar.xz
-# Source1-md5:	6af239dbba1fa8ce3ecc0724babe5078
+Source0:	https://github.com/cracklib/cracklib/releases/download/v%{version}/%{name}-%{version}.tar.xz
+# Source0-md5:	a6dfb1766aab43a54e1cbd78abf0a20a
+# for additional manuals (note: update when available)
+Source1:	http://ftp.debian.org/debian/pool/main/c/cracklib2/%{name}2_2.9.6-5.debian.tar.xz
+# Source1-md5:	8aebaa23809f0cbccc84b56ee54e4325
 Patch0:		%{name}-python3.patch
 URL:		https://github.com/cracklib/cracklib
 BuildRequires:	gettext-tools >= 0.17
@@ -197,14 +197,11 @@ Wiązanie Pythona do crackliba.
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_sbindir},%{_libdir},%{_includedir},%{_datadir}/dict}
+
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-install -d $RPM_BUILD_ROOT%{_mandir}/man{3,8}
-cp -p debian/*.3 $RPM_BUILD_ROOT%{_mandir}/man3
-cp -p debian/*.8 $RPM_BUILD_ROOT%{_mandir}/man8
-# debian specific
-%{__rm} $RPM_BUILD_ROOT%{_mandir}/man8/update-cracklib.8*
+cp -p debian/create-cracklib-dict.8 $RPM_BUILD_ROOT%{_mandir}/man8
 
 chmod 755 util/cracklib-format
 
@@ -250,6 +247,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man3/FascistCheck.3*
 %{_mandir}/man8/cracklib-check.8*
 %{_mandir}/man8/cracklib-format.8*
+%{_mandir}/man8/cracklib-update.8*
 %{_mandir}/man8/create-cracklib-dict.8*
 %{_libdir}/libcrack.la
 %{_includedir}/crack.h
