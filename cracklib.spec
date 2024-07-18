@@ -1,7 +1,8 @@
 #
 # Conditional build:
-%bcond_without	python2	# CPython 2 bindings
-%bcond_without	python3	# CPython 3 bindings
+%bcond_without	python2		# CPython 2 bindings
+%bcond_without	python3		# CPython 3 bindings
+%bcond_without	static_libs	# static library
 
 Summary:	Password checking library
 Summary(es.UTF-8):	Biblioteca de chequeo de contraseñas
@@ -32,7 +33,7 @@ BuildRequires:	libtool >= 2:2
 %{?with_python3:BuildRequires:	python3-devel >= 1:3.2}
 %{?with_python3:BuildRequires:	python3-modules >= 1:3.2}
 BuildRequires:	rpm-pythonprov
-BuildRequires:	rpmbuild(macros) >= 1.219
+BuildRequires:	rpmbuild(macros) >= 1.527
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	words
 BuildRequires:	xz
@@ -195,6 +196,7 @@ install -d build-python2
 cd build-python2
 ../%configure \
 	PYTHON=%{__python} \
+	--disable-static \
 	--with-default-dict=%{_datadir}/dict/cracklib_dict
 
 %{__make}
@@ -205,6 +207,7 @@ install -d build
 cd build
 ../%configure \
 	PYTHON=%{__python3} \
+	%{__enable_disable static_libs static} \
 	--with-default-dict=%{_datadir}/dict/cracklib_dict \
 	%{!?with_python3:--without-python}
 
@@ -231,13 +234,14 @@ build/util/cracklib-packer $RPM_BUILD_ROOT%{_datadir}/dict/cracklib-small
 %{__rm} $RPM_BUILD_ROOT%{_datadir}/%{name}/cracklib-small
 
 %if %{with python2}
-%{__rm} $RPM_BUILD_ROOT%{py_sitedir}/*.{la,a}
+%{__rm} $RPM_BUILD_ROOT%{py_sitedir}/*.la
 %{__rm} $RPM_BUILD_ROOT%{py_sitescriptdir}/test_cracklib.py*
 %py_postclean
 %endif
 
 %if %{with python3}
-%{__rm} $RPM_BUILD_ROOT%{py3_sitedir}/*.{la,a}
+%{__rm} $RPM_BUILD_ROOT%{py3_sitedir}/*.la
+%{?with_static_libs:%{__rm} $RPM_BUILD_ROOT%{py3_sitedir}/*.a}
 %{__rm} $RPM_BUILD_ROOT%{py3_sitescriptdir}/test_cracklib.py*
 %{__rm} $RPM_BUILD_ROOT%{py3_sitescriptdir}/__pycache__/test_cracklib.*.py*
 %endif
@@ -274,9 +278,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/crack.h
 %{_includedir}/packer.h
 
+%if %{with static_libs}
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/libcrack.a
+%endif
 
 %if %{with python2}
 %files -n python-cracklib
