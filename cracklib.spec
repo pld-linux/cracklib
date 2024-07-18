@@ -1,9 +1,7 @@
-%bcond_with	python2	# Don't build python 2 bindings
-%bcond_without	python3	# Don't build python 3 bindings
-
-%if %{with python3}
-%undefine with_python2
-%endif
+#
+# Conditional build:
+%bcond_without	python2	# CPython 2 bindings
+%bcond_without	python3	# CPython 3 bindings
 
 Summary:	Password checking library
 Summary(es.UTF-8):	Biblioteca de chequeo de contraseñas
@@ -14,23 +12,25 @@ Summary(ru.UTF-8):	Библиотека проверки паролей
 Summary(tr.UTF-8):	Parola denetim kitaplığı
 Summary(uk.UTF-8):	Бібліотека перевірки паролів
 Name:		cracklib
-Version:	2.9.11
+Version:	2.10.0
 Release:	1
 License:	LGPL v2.1+
 Group:		Libraries
 #Source0Download: https://github.com/cracklib/cracklib/releases
 Source0:	https://github.com/cracklib/cracklib/releases/download/v%{version}/%{name}-%{version}.tar.xz
-# Source0-md5:	a6dfb1766aab43a54e1cbd78abf0a20a
+# Source0-md5:	77dcff93b42fa07aa5d43b159612e320
 # for additional manuals (note: update when available)
 Source1:	http://ftp.debian.org/debian/pool/main/c/cracklib2/%{name}2_2.9.6-5.debian.tar.xz
 # Source1-md5:	8aebaa23809f0cbccc84b56ee54e4325
-Patch0:		%{name}-python3.patch
 URL:		https://github.com/cracklib/cracklib
+BuildRequires:	autoconf >= 2.50
+BuildRequires:	automake
 BuildRequires:	gettext-tools >= 0.17
-%{?with_python2:BuildRequires:	python-devel}
-%{?with_python2:BuildRequires:	python-modules}
-%{?with_python3:BuildRequires:	python3-devel}
-%{?with_python3:BuildRequires:	python3-modules}
+BuildRequires:	libtool >= 2:2
+%{?with_python2:BuildRequires:	python-devel >= 2}
+%{?with_python2:BuildRequires:	python-modules >= 2}
+%{?with_python3:BuildRequires:	python3-devel >= 1:3.2}
+%{?with_python3:BuildRequires:	python3-modules >= 1:3.2}
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.219
 BuildRequires:	tar >= 1:1.22
@@ -160,7 +160,7 @@ Summary:	Python binding for cracklib
 Summary(pl.UTF-8):	Wiązanie Pythona do crackliba
 Group:		Libraries/Python
 Requires:	%{name} = %{version}-%{release}
-%pyrequires_eq	python-libs
+Requires:	python-libs >= 2
 
 %description -n python-cracklib
 Python binding for cracklib.
@@ -173,7 +173,7 @@ Summary:	Python binding for cracklib
 Summary(pl.UTF-8):	Wiązanie Pythona do crackliba
 Group:		Libraries/Python
 Requires:	%{name} = %{version}-%{release}
-%pyrequires_eq	python3-libs
+Requires:	python3-libs >= 1:3.2
 
 %description -n python3-cracklib
 Python binding for cracklib.
@@ -183,22 +183,43 @@ Wiązanie Pythona do crackliba.
 
 %prep
 %setup -q -a1
-%{?with_python3:%patch0 -p1}
 
 %build
+%{__libtoolize}
 %{__aclocal}
 %{__autoconf}
 %{__autoheader}
 %{__automake}
-%configure \
+%if %{with python2}
+install -d build-python2
+cd build-python2
+../%configure \
+	PYTHON=%{__python} \
 	--with-default-dict=%{_datadir}/dict/cracklib_dict
+
+%{__make}
+cd ..
+%endif
+
+install -d build
+cd build
+../%configure \
+	PYTHON=%{__python3} \
+	--with-default-dict=%{_datadir}/dict/cracklib_dict \
+	%{!?with_python3:--without-python}
+
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_sbindir},%{_libdir},%{_includedir},%{_datadir}/dict}
 
-%{__make} install \
+%if %{with python2}
+%{__make} -C build-python2 install \
+	DESTDIR=$RPM_BUILD_ROOT
+%endif
+
+%{__make} -C build install \
 	DESTDIR=$RPM_BUILD_ROOT
 
 cp -p debian/create-cracklib-dict.8 $RPM_BUILD_ROOT%{_mandir}/man8
@@ -206,7 +227,7 @@ cp -p debian/create-cracklib-dict.8 $RPM_BUILD_ROOT%{_mandir}/man8
 chmod 755 util/cracklib-format
 
 util/cracklib-format $RPM_BUILD_ROOT%{_datadir}/%{name}/cracklib-small | \
-util/cracklib-packer $RPM_BUILD_ROOT%{_datadir}/dict/cracklib-small
+build/util/cracklib-packer $RPM_BUILD_ROOT%{_datadir}/dict/cracklib-small
 %{__rm} $RPM_BUILD_ROOT%{_datadir}/%{name}/cracklib-small
 
 %if %{with python2}
