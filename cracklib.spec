@@ -13,16 +13,13 @@ Summary(ru.UTF-8):	Библиотека проверки паролей
 Summary(tr.UTF-8):	Parola denetim kitaplığı
 Summary(uk.UTF-8):	Бібліотека перевірки паролів
 Name:		cracklib
-Version:	2.10.0
+Version:	2.10.2
 Release:	1
 License:	LGPL v2.1+
 Group:		Libraries
 #Source0Download: https://github.com/cracklib/cracklib/releases
 Source0:	https://github.com/cracklib/cracklib/releases/download/v%{version}/%{name}-%{version}.tar.xz
-# Source0-md5:	77dcff93b42fa07aa5d43b159612e320
-# for additional manuals (note: update when available)
-Source1:	http://ftp.debian.org/debian/pool/main/c/cracklib2/%{name}2_2.9.6-5.debian.tar.xz
-# Source1-md5:	8aebaa23809f0cbccc84b56ee54e4325
+# Source0-md5:	a99e0aef4c677df7063624690b634988
 URL:		https://github.com/cracklib/cracklib
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake
@@ -183,7 +180,7 @@ Python binding for cracklib.
 Wiązanie Pythona do crackliba.
 
 %prep
-%setup -q -a1
+%setup -q
 
 %build
 %{__libtoolize}
@@ -224,8 +221,6 @@ install -d $RPM_BUILD_ROOT{%{_sbindir},%{_libdir},%{_includedir},%{_datadir}/dic
 
 %{__make} -C build install \
 	DESTDIR=$RPM_BUILD_ROOT
-
-cp -p debian/create-cracklib-dict.8 $RPM_BUILD_ROOT%{_mandir}/man8
 
 chmod 755 util/cracklib-format
 
