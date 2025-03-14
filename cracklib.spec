@@ -30,7 +30,7 @@ BuildRequires:	libtool >= 2:2
 %{?with_python3:BuildRequires:	python3-devel >= 1:3.2}
 %{?with_python3:BuildRequires:	python3-modules >= 1:3.2}
 BuildRequires:	rpm-pythonprov
-BuildRequires:	rpmbuild(macros) >= 1.527
+BuildRequires:	rpmbuild(macros) >= 2.043
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	words
 BuildRequires:	xz
@@ -191,7 +191,8 @@ Wiązanie Pythona do crackliba.
 %if %{with python2}
 install -d build-python2
 cd build-python2
-../%configure \
+%define	configuredir	..
+%configure \
 	PYTHON=%{__python} \
 	--disable-static \
 	--with-default-dict=%{_datadir}/dict/cracklib_dict
@@ -202,7 +203,7 @@ cd ..
 
 install -d build
 cd build
-../%configure \
+%configure \
 	PYTHON=%{__python3} \
 	%{__enable_disable static_libs static} \
 	--with-default-dict=%{_datadir}/dict/cracklib_dict \
