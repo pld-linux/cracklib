@@ -1,0 +1,46 @@
+--- cracklib-2.10.2/configure.ac.orig	2024-07-27 16:01:33.000000000 +0200
++++ cracklib-2.10.2/configure.ac	2025-03-14 23:19:05.715368741 +0100
+@@ -76,19 +76,23 @@
+                       AC_MSG_ERROR([python was required but not found])
+                    fi])
+    if test "$build_python" != no ; then
+-      AC_CHECK_HEADERS(python${PYTHON_VERSION}/Python.h,,
+-		       [if test "$build_python" != yes ; then
+-		           AC_MSG_WARN([python headers not found, continuing])
+-			   build_python=no
+-			else
+-		           AC_MSG_ERROR([python headers not found])
+-			fi])
++       if command -v $PYTHON-config > /dev/null; then
++           PYTHON_CFLAGS=`$PYTHON-config --cflags`
++       else
++           if test "$build_python" != yes ; then
++               AC_MSG_WARN([$PYTHON-config not found, continuing])
++               build_python=no
++	   else
++               AC_MSG_ERROR([$PYTHON-config not found])
++           fi
++       fi
+    fi
+    if test "$build_python" != no ; then
+       build_python=yes
+    fi
+ fi
+ AM_CONDITIONAL(BUILD_PYTHON,[test "$build_python" = "yes"])
++AC_SUBST(PYTHON_CFLAGS)
+ 
+ dnl Handle local dict compiling properly
+ AC_SUBST(CROSS_COMPILING, $cross_compiling)
+--- cracklib-2.10.2/python/Makefile.am.orig	2023-03-16 14:38:03.000000000 +0100
++++ cracklib-2.10.2/python/Makefile.am	2025-03-14 23:18:25.303271452 +0100
+@@ -2,9 +2,8 @@
+ python_PYTHON = cracklib.py test_cracklib.py
+ pyexec_LTLIBRARIES = _cracklib.la
+ AM_CFLAGS = -I$(top_srcdir)/lib -Wall
+-AM_CPPFLAGS = '-DLOCALEDIR="$(localedir)"'
++AM_CPPFLAGS = '-DLOCALEDIR="$(localedir)"' $(PYTHON_CFLAGS)
+ _cracklib_la_LDFLAGS = -module -avoid-version $(top_builddir)/lib/libcrack.la
+ DEFS += '-DDEFAULT_CRACKLIB_DICT="$(DEFAULT_CRACKLIB_DICT)"'
+-DEFS += '-DPYTHON_H="python@PYTHON_VERSION@/Python.h"'
+ endif
+ 
