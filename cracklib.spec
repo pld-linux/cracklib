@@ -190,10 +190,10 @@ Wiązanie Pythona do crackliba.
 %{__autoconf}
 %{__autoheader}
 %{__automake}
+%define	configuredir	..
 %if %{with python2}
 install -d build-python2
 cd build-python2
-%define	configuredir	..
 %configure \
 	PYTHON=%{__python} \
 	--disable-static \
