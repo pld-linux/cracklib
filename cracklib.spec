@@ -13,13 +13,13 @@ Summary(ru.UTF-8):	Библиотека проверки паролей
 Summary(tr.UTF-8):	Parola denetim kitaplığı
 Summary(uk.UTF-8):	Бібліотека перевірки паролів
 Name:		cracklib
-Version:	2.10.2
-Release:	4
+Version:	2.10.3
+Release:	1
 License:	LGPL v2.1+
 Group:		Libraries
 #Source0Download: https://github.com/cracklib/cracklib/releases
 Source0:	https://github.com/cracklib/cracklib/releases/download/v%{version}/%{name}-%{version}.tar.xz
-# Source0-md5:	a99e0aef4c677df7063624690b634988
+# Source0-md5:	e8ea2b86de774fc09fdd0f2829680b19
 Patch0:		python-flags.patch
 URL:		https://github.com/cracklib/cracklib
 BuildRequires:	autoconf >= 2.50
