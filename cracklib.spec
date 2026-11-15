@@ -1,6 +1,6 @@
 #
 # Conditional build:
-%bcond_without	python2		# CPython 2 bindings
+%bcond_with	python2		# CPython 2 bindings (unsupported since 2.10.4)
 %bcond_without	python3		# CPython 3 bindings
 %bcond_without	static_libs	# static library
 
@@ -13,13 +13,13 @@ Summary(ru.UTF-8):	Библиотека проверки паролей
 Summary(tr.UTF-8):	Parola denetim kitaplığı
 Summary(uk.UTF-8):	Бібліотека перевірки паролів
 Name:		cracklib
-Version:	2.10.3
+Version:	2.10.4
 Release:	1
 License:	LGPL v2.1+
 Group:		Libraries
 #Source0Download: https://github.com/cracklib/cracklib/releases
 Source0:	https://github.com/cracklib/cracklib/releases/download/v%{version}/%{name}-%{version}.tar.xz
-# Source0-md5:	e8ea2b86de774fc09fdd0f2829680b19
+# Source0-md5:	e920993cf89287673d7b8c2078f10b5d
 Patch0:		python-flags.patch
 URL:		https://github.com/cracklib/cracklib
 BuildRequires:	autoconf >= 2.50
