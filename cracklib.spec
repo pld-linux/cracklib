@@ -1,6 +1,5 @@
 #
 # Conditional build:
-%bcond_with	python2		# CPython 2 bindings (unsupported since 2.10.4)
 %bcond_without	python3		# CPython 3 bindings
 %bcond_without	static_libs	# static library
 
@@ -26,10 +25,8 @@ BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake
 BuildRequires:	gettext-tools >= 0.17
 BuildRequires:	libtool >= 2:2
-%{?with_python2:BuildRequires:	python-devel >= 2}
-%{?with_python2:BuildRequires:	python-modules >= 2}
-%{?with_python3:BuildRequires:	python3-devel >= 1:3.2}
-%{?with_python3:BuildRequires:	python3-modules >= 1:3.2}
+%{?with_python3:BuildRequires:	python3-devel >= 1:3.6}
+%{?with_python3:BuildRequires:	python3-modules >= 1:3.6}
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 2.043
 BuildRequires:	tar >= 1:1.22
@@ -190,21 +187,6 @@ Wiązanie Pythona do crackliba.
 %{__autoconf}
 %{__autoheader}
 %{__automake}
-%define	configuredir	..
-%if %{with python2}
-install -d build-python2
-cd build-python2
-%configure \
-	PYTHON=%{__python} \
-	--disable-static \
-	--with-default-dict=%{_datadir}/dict/cracklib_dict
-
-%{__make}
-cd ..
-%endif
-
-install -d build
-cd build
 %configure \
 	PYTHON=%{__python3} \
 	%{__enable_disable static_libs static} \
@@ -217,25 +199,14 @@ cd build
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_sbindir},%{_libdir},%{_includedir},%{_datadir}/dict}
 
-%if %{with python2}
-%{__make} -C build-python2 install \
-	DESTDIR=$RPM_BUILD_ROOT
-%endif
-
-%{__make} -C build install \
+%{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
 chmod 755 util/cracklib-format
 
 util/cracklib-format $RPM_BUILD_ROOT%{_datadir}/%{name}/cracklib-small | \
-build/util/cracklib-packer $RPM_BUILD_ROOT%{_datadir}/dict/cracklib-small
+util/cracklib-packer $RPM_BUILD_ROOT%{_datadir}/dict/cracklib-small
 %{__rm} $RPM_BUILD_ROOT%{_datadir}/%{name}/cracklib-small
-
-%if %{with python2}
-%{__rm} $RPM_BUILD_ROOT%{py_sitedir}/*.la
-%{__rm} $RPM_BUILD_ROOT%{py_sitescriptdir}/test_cracklib.py*
-%py_postclean
-%endif
 
 %if %{with python3}
 %{__rm} $RPM_BUILD_ROOT%{py3_sitedir}/*.la
@@ -280,13 +251,6 @@ rm -rf $RPM_BUILD_ROOT
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/libcrack.a
-%endif
-
-%if %{with python2}
-%files -n python-cracklib
-%defattr(644,root,root,755)
-%attr(755,root,root) %{py_sitedir}/_cracklib.so
-%{py_sitescriptdir}/cracklib.py[co]
 %endif
 
 %if %{with python3}
