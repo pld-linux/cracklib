@@ -23,7 +23,7 @@ Patch0:		python-flags.patch
 URL:		https://github.com/cracklib/cracklib
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake
-BuildRequires:	gettext-tools >= 0.17
+BuildRequires:	gettext-tools >= 0.19.8
 BuildRequires:	libtool >= 2:2
 %{?with_python3:BuildRequires:	python3-devel >= 1:3.6}
 %{?with_python3:BuildRequires:	python3-modules >= 1:3.6}
@@ -170,7 +170,7 @@ Wiązanie Pythona do crackliba.
 
 %build
 %{__libtoolize}
-%{__aclocal}
+%{__aclocal} -I m4
 %{__autoconf}
 %{__autoheader}
 %{__automake}
