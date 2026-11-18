@@ -123,7 +123,7 @@ Summary(es.UTF-8):	Archivos de inclusión y bibliotecas para cracklib
 Summary(pl.UTF-8):	Pliki nagłówkowe i dokumentacja dla cracklib
 Summary(pt_BR.UTF-8):	Arquivos de inclusão e bibliotecas para a cracklib
 Group:		Development/Libraries
-Requires:	%{name} = %{version}-%{release}
+Requires:	%{name}%{?_isa} = %{version}-%{release}
 
 %description devel
 Header files and documentation for cracklib.
@@ -143,7 +143,7 @@ necessários para desenvolver programas que usam a cracklib.
 Summary:	Static cracklib library
 Summary(pl.UTF-8):	Statyczna biblioteka cracklib
 Group:		Development/Libraries
-Requires:	%{name}-devel = %{version}-%{release}
+Requires:	%{name}-devel%{?_isa} = %{version}-%{release}
 
 %description static
 Static cracklib library.
@@ -151,25 +151,12 @@ Static cracklib library.
 %description static -l pl.UTF-8
 Statyczna biblioteka cracklib.
 
-%package -n python-cracklib
-Summary:	Python binding for cracklib
-Summary(pl.UTF-8):	Wiązanie Pythona do crackliba
-Group:		Libraries/Python
-Requires:	%{name} = %{version}-%{release}
-Requires:	python-libs >= 2
-
-%description -n python-cracklib
-Python binding for cracklib.
-
-%description -n python-cracklib -l pl.UTF-8
-Wiązanie Pythona do crackliba.
-
 %package -n python3-cracklib
 Summary:	Python binding for cracklib
 Summary(pl.UTF-8):	Wiązanie Pythona do crackliba
 Group:		Libraries/Python
-Requires:	%{name} = %{version}-%{release}
-Requires:	python3-libs >= 1:3.2
+Requires:	%{name}%{?_isa} = %{version}-%{release}
+Requires:	python3-libs%{?_isa} >= 1:3.6
 
 %description -n python3-cracklib
 Python binding for cracklib.
@@ -229,15 +216,15 @@ rm -rf $RPM_BUILD_ROOT
 %files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc AUTHORS NEWS README README-DAWG README-LICENSE README-WORDS
-%attr(755,root,root) %{_libdir}/libcrack.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libcrack.so.2
+%{_libdir}/libcrack.so.*.*.*
+%ghost %{_libdir}/libcrack.so.2
 %{_datadir}/dict/cracklib-small.*
 
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_sbindir}/cracklib-*
 %attr(755,root,root) %{_sbindir}/create-cracklib-dict
-%attr(755,root,root) %{_libdir}/libcrack.so
+%{_libdir}/libcrack.so
 %{_mandir}/man3/FascistCheck.3*
 %{_mandir}/man8/cracklib-check.8*
 %{_mandir}/man8/cracklib-format.8*
@@ -256,7 +243,7 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with python3}
 %files -n python3-cracklib
 %defattr(644,root,root,755)
-%attr(755,root,root) %{py3_sitedir}/_cracklib.so
+%{py3_sitedir}/_cracklib.so
 %{py3_sitescriptdir}/cracklib.py
 %{py3_sitescriptdir}/__pycache__/cracklib.*.py[co]
 %endif
